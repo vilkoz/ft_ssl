@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit_arr_quote.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vitaliirybalko <vrybalko@student.uni       +#+  +:+       +#+        */
+/*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/21 14:46:00 by vitaliir          #+#    #+#             */
-/*   Updated: 2017/11/21 14:54:16 by vitaliir         ###   ########.fr       */
+/*   Created: 2018/01/18 19:55:32 by vrybalko          #+#    #+#             */
+/*   Updated: 2018/01/18 19:55:34 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

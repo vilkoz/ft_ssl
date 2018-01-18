@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vitaliirybalko <vrybalko@student.uni       +#+  +:+       +#+        */
+/*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/21 12:30:33 by vitaliir          #+#    #+#             */
-/*   Updated: 2017/11/21 12:35:05 by vitaliir         ###   ########.fr       */
+/*   Created: 2018/01/18 19:51:45 by vrybalko          #+#    #+#             */
+/*   Updated: 2018/01/18 19:52:04 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

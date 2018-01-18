@@ -6,7 +6,7 @@
 /*   By: vrybalko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/26 21:53:06 by vrybalko          #+#    #+#             */
-/*   Updated: 2017/11/23 00:11:53 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/18 19:54:56 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*ft_strstr(char *s, char *to_find)
 {
 	int		i;
 	size_t	len;
-	
+
 	i = -1;
 	len = ft_strlen(to_find);
 	if (!s || !to_find)

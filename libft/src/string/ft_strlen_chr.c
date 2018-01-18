@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen_chr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vitaliirybalko <vrybalko@student.uni       +#+  +:+       +#+        */
+/*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/21 15:16:55 by vitaliir          #+#    #+#             */
-/*   Updated: 2017/11/21 15:19:11 by vitaliir         ###   ########.fr       */
+/*   Created: 2018/01/18 19:54:26 by vrybalko          #+#    #+#             */
+/*   Updated: 2018/01/18 19:54:28 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

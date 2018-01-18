@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 23:11:51 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/18 13:12:00 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/18 20:05:28 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 char			*base64_encode(char *in);
 
 /*
-** base64_decode decodes base64 string @in 
+** base64_decode decodes base64 string @in
 ** returns allocated on heap null-terminated string
 */
 

@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/19 14:42:03 by vrybalko          #+#    #+#             */
-/*   Updated: 2017/11/19 15:17:21 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/18 19:52:47 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ typedef struct		s_queue
 	void			*head;
 	void			*tail;
 }					t_queue;
-
 
 void				queue_init(t_queue *q, size_t capacity, size_t sz);
 void				queue_free(t_queue *q);

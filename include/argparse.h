@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 13:14:59 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/18 16:20:44 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/18 20:02:56 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "base64.h"
 
 # ifndef NULL
-# define NULL (void*)0
+#  define NULL (void*)0
 # endif
 
 typedef struct		s_args
