@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 23:08:41 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/18 17:49:51 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/18 21:11:08 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,18 @@ static void		bit_field_to_string(char *out, unsigned int field,
 	out[0] = base64_dict[field & 0x3f];
 }
 
-char			*base64_encode(char *in)
+char			*base64_encode(unsigned char *in, size_t len)
 {
 	char				*out;
 	int					i;
 	int					j;
 	t_convert_word		convert_word;
 
-	out = ft_strnew(CEIL_DIV(ft_strlen(in), 3) * 4);
+	out = ft_strnew(CEIL_DIV(len, 3) * 4);
 	convert_word.field = 0;
 	i = -1;
 	j = 0;
-	while (in[++i])
+	while ((size_t)++i < len)
 	{
 		if (i % 3 == 0 && i != 0)
 		{
@@ -59,6 +59,33 @@ static char		b64_char_to_num(char c)
 	return (c != '=' ? ft_strchr(base64, c) - base64 : 0);
 }
 
+static char		*b64_sanitize(char *in)
+{
+	int		i;
+	int		j;
+	int		count;
+	char	*out;
+
+	count = 0;
+	i = -1;
+	while (in[++i])
+		if (ft_strchr(BASE64_DICT, in[i]) || in[i] == '=')
+			count++;
+	out = ft_strnew(count);
+	i = -1;
+	j = 0;
+	while (in[++i])
+	{
+		if (ft_strchr(BASE64_DICT, in[i]) || in[i] == '=')
+		{
+			out[j] = in[i];
+			j++;
+		}
+	}
+	ft_memdel((void*)&in);
+	return (out);
+}
+
 char			*base64_decode(char *in)
 {
 	char				*out;
@@ -66,6 +93,7 @@ char			*base64_decode(char *in)
 	int					j;
 	t_convert_word		convert_word;
 
+	in = b64_sanitize(in);
 	out = ft_strnew(CEIL_DIV(ft_strlen(in), 4) * 3);
 	convert_word.field = 0;
 	i = -1;
@@ -83,5 +111,6 @@ char			*base64_decode(char *in)
 	}
 	REV_B64_CHAR(convert_word.byte);
 	ft_strncpy(out + j, (char*)convert_word.byte, 3);
+	ft_memdel((void**)&in);
 	return (out);
 }
