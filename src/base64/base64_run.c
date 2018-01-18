@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 13:43:29 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/18 21:11:11 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/18 21:50:18 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,21 @@ static unsigned char	*reader(int fd, size_t *sum_len)
 	return (out);
 }
 
+static void				base64_output(t_base64_config *data, char *out,
+							size_t len)
+{
+	int		i;
+
+	if (data->mode == ENCODE)
+		ft_putstr_fd(out, data->out_fd);
+	else
+	{
+		i = -1;
+		while ((size_t)++i < len)
+			write(data->out_fd, out + i, 1);
+	}
+}
+
 void					base64_run(void *data_struct)
 {
 	t_base64_config		*data;
@@ -79,11 +94,12 @@ void					base64_run(void *data_struct)
 		out = ft_strdup("");
 	else
 		out = data->mode == ENCODE ? base64_encode(in, sum_len) :
-			base64_decode((char*)in);
-	ft_putstr_fd(out, data->out_fd);
-	ft_memdel((void**)&out);
+			base64_decode((char*)in, &sum_len);
+	base64_output(data, out, sum_len);
 	if (data->in_mode == FILEIN)
 		close(data->in_fd);
 	if (data->out_mode == FILEOUT)
 		close(data->out_fd);
+	ft_memdel((void**)&out);
+	ft_memdel((void**)&data);
 }

@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 23:08:41 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/18 21:11:08 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/18 21:45:17 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static char		*b64_sanitize(char *in)
 	return (out);
 }
 
-char			*base64_decode(char *in)
+char			*base64_decode(char *in, size_t *len)
 {
 	char				*out;
 	int					i;
@@ -94,7 +94,8 @@ char			*base64_decode(char *in)
 	t_convert_word		convert_word;
 
 	in = b64_sanitize(in);
-	out = ft_strnew(CEIL_DIV(ft_strlen(in), 4) * 3);
+	*len = CEIL_DIV(ft_strlen(in), 4) * 3;
+	out = ft_strnew(*len);
 	convert_word.field = 0;
 	i = -1;
 	j = 0;
@@ -103,14 +104,14 @@ char			*base64_decode(char *in)
 		if (i % 4 == 0 && i != 0)
 		{
 			REV_B64_CHAR(convert_word.byte);
-			ft_strncpy(out + j, (char*)convert_word.byte, 3);
+			ft_memcpy((void*)(out + j), (void*)convert_word.byte, 3);
 			j += 3;
 			convert_word.field = 0;
 		}
 		SET_B64_CHAR(convert_word.field, b64_char_to_num(in[i]), 3 - (i % 4));
 	}
 	REV_B64_CHAR(convert_word.byte);
-	ft_strncpy(out + j, (char*)convert_word.byte, 3);
+	ft_memcpy((void*)(out + j), (void*)convert_word.byte, 3);
 	ft_memdel((void**)&in);
 	return (out);
 }
