@@ -12,7 +12,7 @@ for _ in range(100):
     try:
         encoded_text = co("echo -n \"" + s + "\" | ../../ft_ssl base64 -e", shell=True);
         ssl_encoded = co("echo -n \"" + s + "\"| base64 -w 0", shell=True);
-        decoded_text = co("echo -n \"" + ssl_encoded.decode() + "\"| base64 -d", shell=True);
+        decoded_text = co("echo -n \"" + ssl_encoded.decode() + "\"| ../../ft_ssl base64 -d", shell=True);
     except CalledProcessError as e:
         print(e)
     encoded_text = encoded_text.decode()
