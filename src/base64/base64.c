@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 23:08:41 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/18 00:32:40 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/18 17:49:51 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,6 @@ char			*base64_encode(char *in)
 	return (out);
 }
 
-static void		string_to_bit_field(char *out, t_convert_word convert_word,
-		unsigned int empty_b64_bytes)
-{
-	static char			*base64 = BASE64_DICT;
-}
-
 static char		b64_char_to_num(char c)
 {
 	static char			*base64 = BASE64_DICT;
@@ -81,29 +75,13 @@ char			*base64_decode(char *in)
 		if (i % 4 == 0 && i != 0)
 		{
 			REV_B64_CHAR(convert_word.byte);
-			ft_strncpy(out + j, convert_word.byte, 3);
+			ft_strncpy(out + j, (char*)convert_word.byte, 3);
 			j += 3;
 			convert_word.field = 0;
 		}
 		SET_B64_CHAR(convert_word.field, b64_char_to_num(in[i]), 3 - (i % 4));
 	}
 	REV_B64_CHAR(convert_word.byte);
-	ft_strncpy(out + j, convert_word.byte, 3);
+	ft_strncpy(out + j, (char*)convert_word.byte, 3);
 	return (out);
-}
-
-int		main(int ac, char **av)
-{
-	if (ac != 2)
-	{
-		ft_putstr("usage ./base64_encode \"text\"");
-		return (1);
-	}
-	char		*out = base64_encode(av[1]);
-	char		*decoded = base64_decode(out);
-	ft_putendl(out);
-	ft_putstr(decoded);
-	free(out);
-	free(decoded);
-	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/19 15:12:34 by vrybalko          #+#    #+#             */
-/*   Updated: 2017/11/19 15:13:12 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/18 17:48:27 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ t_list				*ft_lst_push_back(t_list *begin, t_list *elem);
 t_list				*ft_list_at(t_list *begin_list, unsigned int nbr);
 size_t				ft_lst_size(t_list *head);
 void				**ft_lst_to_array(t_list *head);
+t_list				*ft_lst_rev(t_list *list);
 
 #endif

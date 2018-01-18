@@ -6,7 +6,7 @@
 #    By: vrybalko <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/23 14:08:11 by vrybalko          #+#    #+#              #
-#    Updated: 2017/11/21 15:19:24 by vitaliir         ###   ########.fr        #
+#    Updated: 2018/01/18 17:48:18 by vrybalko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,6 +88,7 @@ SRCS = memory/ft_memset.c						\
 	   list/ft_lst_push_back.c					\
 	   list/ft_lst_size.c						\
 	   list/ft_lst_to_array.c					\
+	   list/ft_lst_rev.c						\
 	   get_next_line/get_next_line.c			\
 	   queue/queue.c
 
