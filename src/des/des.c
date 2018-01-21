@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 22:52:15 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/21 02:33:51 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/21 13:45:37 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,10 +224,12 @@ void	left_shift(t_byte *dst, const t_byte *src, int shift)
 	t_byte		save_byte;
 	t_byte		first_byte;
 
+	if (shift == 0)
+		ft_memcpy((void*)dst, (void*)src, 4);
 	first_byte = src[0];
-	dst[3] = (src[3] << shift) | (first_byte >> (8 - shift - 4));
-	dst[3] ^= dst[3] & 0xf;
-	save_byte = src[3];
+	dst[3] = (src[3] << shift) | (first_byte >> (8 - shift));
+	dst[3] ^= dst[3] & 0xf0;
+	save_byte = src[3] << 4;
 	dst[2] = (src[2] << shift) | (save_byte >> (8 - shift));
 	save_byte = src[2];
 	dst[1] = (src[1] << shift) | (save_byte >> (8 - shift));
@@ -241,17 +243,21 @@ void	right_shift(t_byte *dst, const t_byte *src, int shift)
 	t_byte		first_byte;
 	t_byte		mask;
 
+	if (shift == 0)
+	{
+		ft_memcpy((void*)dst, (void*)src, 4);
+		return ;
+	}
 	mask = (shift == 2) ? 0x3 : 0x1;
 	first_byte = src[3];
-	dst[0] = (src[0] >> shift) | ((first_byte & (mask << (8 - shift - 4))) << 4);
+	dst[0] = (src[0] >> shift) | (((first_byte) & mask) << (8 - shift));
 	save_byte = src[0];
-	dst[1] = (src[1] >> shift) | (save_byte & (mask << (8 - shift)));
+	dst[1] = (src[1] >> shift) | ((save_byte & mask) << (8 - shift));
 	save_byte = src[1];
-	dst[2] = (src[2] >> shift) | (save_byte & (mask << (8 - shift)));
+	dst[2] = (src[2] >> shift) | ((save_byte & mask) << (8 - shift));
 	save_byte = src[2];
-	dst[3] = (src[3] >> shift) | (save_byte & (mask << (8 - shift)));
-	save_byte = src[3];
-	dst[3] ^= dst[3] & 0xf;
+	dst[3] = (src[3] >> shift) | ((save_byte & (mask)) << (4 - shift));
+	dst[3] ^= dst[3] & 0xf0;
 }
 
 void	compression_key_transformation(t_byte *k, const t_byte *c,
@@ -274,10 +280,11 @@ void	compression_key_transformation(t_byte *k, const t_byte *c,
 			SET_NTH_BIT(tmp, i + 1, GET_NTH_BIT(d, i + 1 - 28 + 4));
 	}
 	ft_bzero((void*)k, sizeof(t_byte) * 7);
+	ft_memcpy((void*)k, (void*)&(tmp[0]), 7);
 	i = -1;
-	while (++i < 48)
-		SET_NTH_BIT(k, i + 1, GET_NTH_BIT(tmp,
-					g_key_compression_permutation[i]));
+	/* while (++i < 48) */
+	/* 	SET_NTH_BIT(k, i + 1, GET_NTH_BIT(tmp, */
+	/* 				g_key_compression_permutation[i])); */
 }
 
 void	gen_keys(const t_init_key init_key, t_key *keys, t_des_action action)
@@ -469,36 +476,43 @@ void	des_process_block(t_byte *dst, t_byte *block, t_key *keys,
 
 int		main()
 {
-	t_init_key		key = {
-		/* {0x13, 0x34, 0x57, 0x79, 0x9b, 0xbc, 0xdf, 0xf1} */
-		/* {0x31, 0x43, 0x75, 0x97, 0xb9, 0xcb, 0xfd, 0x1f} */
-		{0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff}
+	/* t_init_key		key = { */
+	/* 	/1* {0x13, 0x34, 0x57, 0x79, 0x9b, 0xbc, 0xdf, 0xf1} *1/ */
+	/* 	/1* {0x31, 0x43, 0x75, 0x97, 0xb9, 0xcb, 0xfd, 0x1f} *1/ */
+	/* 	{0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff} */
+	/* }; */
+	/* t_key			keys[17] = {0}; */
+	/* t_byte			data[8] = { */
+	/* 	/1* 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff *1/ */
+	/* 	0x31, 0x43, 0x75, 0x97, 0xb9, 0xcb, 0xfd, 0x1f */
+	/* }; */
+	/* t_byte			out[8] = {0}; */
+
+	/* gen_keys(key, &(keys[0]), ENCRYPT); */
+
+	/* ft_bzero((void*)&(out[0]), 8); */
+	/* puts("key:"); */
+	/* print_key(keys[0].k, 7); */
+	/* puts("in data:"); */
+	/* print_key(data, 8); */
+	/* des_process_block(&(out[0]), &(data[0]), &(keys[0]), ENCRYPT); */
+	/* puts("out:"); */
+	/* print_key(out, 8); */
+
+	/* ft_bzero((void*)&(data[0]), 8); */
+	/* puts("begin decrypt"); */
+	/* gen_keys(key, &(keys[0]), DECRYPT); */
+	/* puts("in data:"); */
+	/* print_key(out, 8); */
+	/* des_process_block(&(data[0]), &(out[0]), &(keys[0]), DECRYPT); */
+	/* puts("out:"); */
+	/* print_key(data, 8); */
+	t_byte		c[4] = {
+		0xcf, 0xcf, 0xcf, 0x0c
 	};
-	t_key			keys[17] = {0};
-	t_byte			data[8] = {
-		/* 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff */
-		0x31, 0x43, 0x75, 0x97, 0xb9, 0xcb, 0xfd, 0x1f
-	};
-	t_byte			out[8] = {0};
-
-	gen_keys(key, &(keys[0]), ENCRYPT);
-
-	ft_bzero((void*)&(out[0]), 8);
-	puts("key:");
-	print_key(keys[0].k, 7);
-	puts("in data:");
-	print_key(data, 8);
-	des_process_block(&(out[0]), &(data[0]), &(keys[0]), ENCRYPT);
-	puts("out:");
-	print_key(out, 8);
-
-	ft_bzero((void*)&(data[0]), 8);
-	puts("begin decrypt");
-	gen_keys(key, &(keys[0]), DECRYPT);
-	puts("in data:");
-	print_key(out, 8);
-	des_process_block(&(data[0]), &(out[0]), &(keys[0]), DECRYPT);
-	puts("out:");
-	print_key(data, 8);
+	print_key(c, 4);
+	t_byte		c_shifted[4] = {0};
+	left_shift(&(c_shifted[0]), &(c[0]), 2);
+	print_key(c_shifted, 4);
 	return (0);
 }
