@@ -6,7 +6,7 @@
 #    By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/18 13:19:24 by vrybalko          #+#    #+#              #
-#    Updated: 2018/01/18 16:25:09 by vrybalko         ###   ########.fr        #
+#    Updated: 2018/01/22 01:21:07 by vrybalko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,12 @@ SRCS = main.c							\
 	   base64/base64_run.c				\
 	   base64/base64_argparse.c			\
 	   base64/base64_argparse_funcs.c	\
+	   des/des.c						\
+	   des/des_run.c					\
+	   des/des_argparse.c				\
+	   des/des_argparse_funcs.c			\
+	   des/des_key_generation.c			\
+	   des/des_initial_premutation.c	\
 
 BIN_DIR = bin
 

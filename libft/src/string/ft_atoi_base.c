@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/04 15:44:07 by vrybalko          #+#    #+#             */
-/*   Updated: 2017/03/23 19:39:48 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/22 01:05:35 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 static int	ft_inbase(char c, int base, char ba)
 {
 	if (base <= 10)
-		return (c >= '0' && c <= '9');
+		return (c >= '0' && c <= '0' + base);
 	return ((c >= '0' && c <= '9') || (c >= ba && c <= (ba + base - 10)));
 }
 
-static	int	check_case(char *str, int base)
+static int	check_case(char *str, int base)
 {
 	int		i;
 

@@ -6,14 +6,14 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 13:06:43 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/18 16:32:53 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/21 23:44:42 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "base64_argparse_private.h"
 #include "libft.h"
 
-char			*g_flags[NUMBER_OF_FLAGS] = {
+static char		*g_flags[NUMBER_OF_FLAGS] = {
 	"-d",
 	"-e",
 	NULL,
@@ -22,7 +22,7 @@ char			*g_flags[NUMBER_OF_FLAGS] = {
 	"-o"
 };
 
-int				(*g_funcs[NUMBER_OF_FLAGS])(int,
+static int		(*g_funcs[NUMBER_OF_FLAGS])(int,
 					char **, t_base64_config *, int) = {
 	base64_argparse_set_decode,
 	base64_argparse_set_encode,

@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 14:20:06 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/18 16:21:10 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/21 23:44:59 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,5 @@ typedef struct	s_base64_config
 	int			in_fd;
 	int			out_fd;
 }				t_base64_config;
-
-extern char		*g_flags[NUMBER_OF_FLAGS];
-
-extern int		(*g_funcs[NUMBER_OF_FLAGS])(int,
-					char **, t_base64_config *, int);
 
 #endif

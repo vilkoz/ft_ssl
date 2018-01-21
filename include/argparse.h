@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 13:14:59 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/18 20:02:56 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/22 01:19:11 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define ARGPARSE_H
 
 # include "base64.h"
+# include "des.h"
 
 # ifndef NULL
 #  define NULL (void*)0
@@ -37,8 +38,8 @@ enum				e_program
 static char		*g_a[NUMBER_OF_PROGRAMS + 1] = {
 					"base64", "des", "des-cbc", NULL};
 static void		(*g_f[NUMBER_OF_PROGRAMS])(int, char **, void **) = {
-					base64_argparse, NULL, NULL};
+					base64_argparse, des_argparse, NULL};
 static void		(*g_r[NUMBER_OF_PROGRAMS])(void *) = {
-					base64_run, NULL, NULL};
+					base64_run, des_run, NULL};
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 19:33:08 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/21 20:33:07 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/22 01:19:36 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ typedef enum			e_des_action
 	DECRYPT
 }						t_des_action;
 
+void					des_argparse(int ac, char **av, void **data_struct);
+
+void					des_run(void *arg);
 
 void					des_process_block(t_byte *dst, t_byte *block,
 							t_key *keys, t_des_action action);
