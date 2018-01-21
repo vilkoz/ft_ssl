@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 19:33:08 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/21 20:10:17 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/21 20:33:07 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 # define DES_H
 
 typedef unsigned char	t_byte;
+
+typedef struct			s_init_key
+{
+	t_byte				bytes[8];
+}						t_init_key;
 
 typedef struct			s_key
 {
@@ -29,7 +34,15 @@ typedef enum			e_des_action
 }						t_des_action;
 
 
-void			des_process_block(t_byte *dst, t_byte *block, t_key *keys,
-					t_des_action action);
+void					des_process_block(t_byte *dst, t_byte *block,
+							t_key *keys, t_des_action action);
+
+/*
+** generates 17 des keys from @init_key, @keys should have space for 17x56bits
+** @action is only required to be equal ENCRYPT
+*/
+
+void					gen_keys(const t_init_key init_key, t_key *keys,
+							t_des_action action);
 
 #endif

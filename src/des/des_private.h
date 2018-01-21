@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 19:34:19 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/21 20:09:48 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/21 20:32:42 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,6 @@
 # define DES_PRIVATE_H
 
 # include "des.h"
-
-typedef struct			s_init_key
-{
-	t_byte				bytes[8];
-}						t_init_key;
 
 typedef struct			s_data
 {
@@ -41,14 +36,6 @@ typedef struct			s_data
 ** extern t_byte			g_s_block[8][64];
 ** extern t_byte			g_p_block[];
 */
-
-/*
-** generates 17 des keys from @init_key, @keys should have space for 17x56bits
-** @action is only required to be equal ENCRYPT
-*/
-
-void					gen_keys(const t_init_key init_key, t_key *keys,
-							t_des_action action);
 
 /*
 ** apply inital_permutation on 64bits @src
