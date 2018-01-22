@@ -6,7 +6,7 @@
 #    By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/18 13:19:24 by vrybalko          #+#    #+#              #
-#    Updated: 2018/01/22 01:21:07 by vrybalko         ###   ########.fr        #
+#    Updated: 2018/01/22 22:12:54 by vrybalko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ $(LIBFT):
 	make -C $(LIBFT_DIR) -j8
 
 SRCS = main.c							\
+	   reader.c							\
 	   base64/base64.c					\
 	   base64/base64_run.c				\
 	   base64/base64_argparse.c			\
@@ -34,6 +35,7 @@ SRCS = main.c							\
 	   des/des.c						\
 	   des/des_run.c					\
 	   des/des_argparse.c				\
+	   des/des_operations.c				\
 	   des/des_argparse_funcs.c			\
 	   des/des_key_generation.c			\
 	   des/des_initial_premutation.c	\

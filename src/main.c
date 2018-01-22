@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 12:35:49 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/18 13:40:01 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/22 23:21:49 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int		main(int ac, char **av)
 
 	ft_bzero((void*)&args_struct, sizeof(t_args));
 	argparse(ac, av, &args_struct);
-	args_struct.parse_func(ac, av, &args_struct.data_struct);
+	args_struct.parse_func(ac, av, &(args_struct.data_struct));
 	args_struct.run_func(args_struct.data_struct);
 	return (0);
 }

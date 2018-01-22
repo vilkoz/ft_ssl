@@ -6,12 +6,14 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 19:33:08 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/22 01:19:36 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/22 23:00:42 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DES_H
 # define DES_H
+
+# include <stdlib.h>
 
 typedef unsigned char	t_byte;
 
@@ -19,6 +21,14 @@ typedef struct			s_init_key
 {
 	t_byte				bytes[8];
 }						t_init_key;
+
+typedef struct		s_byte_array
+{
+	t_byte			*bytes;
+	size_t			len;
+}					t_byte_array;
+
+# define BYTE_ARRAY(b, l) (t_byte_array){b, l}
 
 typedef struct			s_key
 {
@@ -47,5 +57,12 @@ void					des_process_block(t_byte *dst, t_byte *block,
 
 void					gen_keys(const t_init_key init_key, t_key *keys,
 							t_des_action action);
+
+/*
+** @key and @iv should be 8bytes long
+*/
+
+char					*des_encrypt(t_byte_array in, t_byte *key, t_byte *iv);
+char					*des_decrypt(t_byte_array in, t_byte *key, t_byte *iv);
 
 #endif
