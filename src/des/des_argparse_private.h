@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 23:38:48 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/25 00:02:30 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/25 01:36:20 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ enum				e_args_flags
 	NOBASE64,
 	KEY_ARG,
 	KEY_STDIN,
+	ECB,
+	CBC,
 	NUMBER_OF_FLAGS
 };
 
@@ -45,6 +47,8 @@ typedef struct		s_des_config
 	char			b64_mode;
 	char			key_mode;
 	unsigned char	key[8];
+	int				chiper_mode;
+	int				iv_status;
 	unsigned char	iv[8];
 }					t_des_config;
 

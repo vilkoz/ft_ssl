@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 19:33:08 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/25 00:50:58 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/25 01:39:37 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ typedef enum			e_des_action
 }						t_des_action;
 
 void					des_argparse(int ac, char **av, void **data_struct,
+							struct s_args *args);
+
+void					des_cbc_argparse(int ac, char **av, void **data_struct,
 							struct s_args *args);
 
 void					des_run(void *arg);

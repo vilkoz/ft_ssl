@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 01:09:02 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/25 01:00:01 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/25 01:37:55 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@ int	des_argparse_set_filein(int ac, char **av, void *data, int j);
 int	des_argparse_set_fileout(int ac, char **av, void *data, int j);
 int	des_argparse_set_b64(int ac, char **av, void *data, int j);
 int	des_argparse_set_keyarg(int ac, char **av, void *data, int j);
+int	des_cbc_argparse_set_iv(int ac, char **av, void *data, int j);
 
 #endif

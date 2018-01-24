@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 01:19:58 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/24 02:13:34 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/25 01:44:42 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ void			des_run(void *arg)
 	size_t			sum_len;
 
 	data = (t_des_config*)arg;
+	if (data->chiper_mode == CBC && data->iv_status == 0)
+		return ft_putendl_fd("ft_ssl: des-cbc: no -iv provided!", 2);
 	out = NULL;
 	if (data->key_mode == KEY_STDIN)
 		set_pass(data);
@@ -103,9 +105,11 @@ void			des_run(void *arg)
 		in = (unsigned char*)out;
 	}
 	if (data->mode == ENCRYPT_FLAG)
-		out = (void*)des_encrypt(BYTE_ARRAY(in, sum_len), &(data->key[0]), NULL);
+		out = (void*)des_encrypt(BYTE_ARRAY(in, sum_len),
+			&(data->key[0]), data->chiper_mode == CBC ? &(data->iv[0]): NULL);
 	else if (data->mode == DECRYPT_FLAG)
-		out = (void*)des_decrypt(BYTE_ARRAY(in, sum_len), &(data->key[0]), NULL);
+		out = (void*)des_decrypt(BYTE_ARRAY(in, sum_len),
+			&(data->key[0]), data->chiper_mode == CBC ? &(data->iv[0]): NULL);
 	des_output(data, (t_byte*)out, sum_len);
 	cleanup(data, (char*)out, in);
 }

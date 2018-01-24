@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   des_argparse.c                                     :+:      :+:    :+:   */
+/*   des_cbc_argparse.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/21 23:45:42 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/25 01:29:16 by vrybalko         ###   ########.fr       */
+/*   Created: 2018/01/25 01:25:29 by vrybalko          #+#    #+#             */
+/*   Updated: 2018/01/25 01:38:12 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static char		*g_flags[NUMBER_OF_FLAGS] = {
 	"-a",
 	NULL,
 	"-k",
+	NULL,
+	"-iv",
 	NULL
 };
 
@@ -38,10 +40,12 @@ static int		(*g_funcs[NUMBER_OF_FLAGS])(int,
 	des_argparse_set_b64,
 	NULL,
 	des_argparse_set_keyarg,
+	NULL,
+	des_cbc_argparse_set_iv,
 	NULL
 };
 
-void			des_argparse(int ac, char **av, void **data_struct,
+void			des_cbc_argparse(int ac, char **av, void **data_struct,
 					t_args *args)
 {
 	t_des_config		*data;
@@ -56,7 +60,8 @@ void			des_argparse(int ac, char **av, void **data_struct,
 	data->out_fd = 1;
 	data->b64_mode = NOBASE64;
 	data->key_mode = KEY_STDIN;
-	data->chiper_mode = ECB;
+	data->chiper_mode = CBC;
+	data->iv_status = 0;
 	*data_struct = (void*)data;
 	args->flags_num = NUMBER_OF_FLAGS;
 	args->funcs = &(g_funcs[0]);
