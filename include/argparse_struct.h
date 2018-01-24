@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   base64_argparse_funcs.h                            :+:      :+:    :+:   */
+/*   argparse_struct.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/18 16:11:36 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/25 00:27:52 by vrybalko         ###   ########.fr       */
+/*   Created: 2018/01/25 00:48:27 by vrybalko          #+#    #+#             */
+/*   Updated: 2018/01/25 00:54:15 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BASE64_ARGPARSE_FUNCS_H
-# define BASE64_ARGPARSE_FUNCS_H
+#ifndef ARGPARSE_STUCT_H
+# define ARGPARSE_STUCT_H
 
-struct s_base64_config;
+typedef struct		s_args
+{
+	void			(*parse_func)(int ac, char **av, void **data_struct,
+						struct s_args *);
+	void			(*run_func)(void *data_struct);
+	void			*data_struct;
+	int				flags_num;
+	int				(**funcs)(int, char **, void *, int);
+	char			**flags;
 
-int		base64_argparse_set_decode(int ac, char **av,
-			void *data, int j);
-int		base64_argparse_set_encode(int ac, char **av,
-			void *data, int j);
-int		base64_argparse_set_filein(int ac, char **av,
-			void *data, int j);
-int		base64_argparse_set_fileout(int ac, char **av,
-			void *data, int j);
+}					t_args;
 
 #endif

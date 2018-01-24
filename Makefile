@@ -6,7 +6,7 @@
 #    By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/18 13:19:24 by vrybalko          #+#    #+#              #
-#    Updated: 2018/01/22 22:12:54 by vrybalko         ###   ########.fr        #
+#    Updated: 2018/01/25 01:02:54 by vrybalko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,3 +60,6 @@ fclean: clean
 	/bin/rm -f $(NAME)
 
 re: fclean all
+
+test: $(NAME)
+	cd src/base64; python3 base64_test.py

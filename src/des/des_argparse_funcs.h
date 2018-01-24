@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 01:09:02 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/22 01:10:31 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/25 01:00:01 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 # include "des_argparse_private.h"
 
-int	des_argparse_set_decode(int ac, char **av, t_des_config *data, int j);
-int	des_argparse_set_filein(int ac, char **av, t_des_config *data, int j);
-int	des_argparse_set_fileout(int ac, char **av, t_des_config *data, int j);
-int	des_argparse_set_b64(int ac, char **av, t_des_config *data, int j);
-int	des_argparse_set_keyarg(int ac, char **av, t_des_config *data, int j);
+int	des_argparse_set_decode(int ac, char **av, void *data, int j);
+int	des_argparse_set_filein(int ac, char **av, void *data, int j);
+int	des_argparse_set_fileout(int ac, char **av, void *data, int j);
+int	des_argparse_set_b64(int ac, char **av, void *data, int j);
+int	des_argparse_set_keyarg(int ac, char **av, void *data, int j);
 
 #endif

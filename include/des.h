@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 19:33:08 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/22 23:00:42 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/25 00:50:58 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define DES_H
 
 # include <stdlib.h>
+# include "argparse_struct.h"
 
 typedef unsigned char	t_byte;
 
@@ -22,11 +23,11 @@ typedef struct			s_init_key
 	t_byte				bytes[8];
 }						t_init_key;
 
-typedef struct		s_byte_array
+typedef struct			s_byte_array
 {
-	t_byte			*bytes;
-	size_t			len;
-}					t_byte_array;
+	t_byte				*bytes;
+	size_t				len;
+}						t_byte_array;
 
 # define BYTE_ARRAY(b, l) (t_byte_array){b, l}
 
@@ -43,7 +44,8 @@ typedef enum			e_des_action
 	DECRYPT
 }						t_des_action;
 
-void					des_argparse(int ac, char **av, void **data_struct);
+void					des_argparse(int ac, char **av, void **data_struct,
+							struct s_args *args);
 
 void					des_run(void *arg);
 

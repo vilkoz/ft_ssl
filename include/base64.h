@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 23:11:51 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/22 23:11:32 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/25 00:51:02 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define BASE64_H
 
 # include <stddef.h>
+# include "argparse_struct.h"
 
 /*
 ** base64_encode encodes bytesteam @in in base64
@@ -29,7 +30,8 @@ char			*base64_encode(unsigned char *in, size_t len);
 
 char			*base64_decode(char *in, size_t *len);
 
-void			base64_argparse(int ac, char **av, void **data_struct);
+void			base64_argparse(int ac, char **av, void **data_struct,
+						struct s_args * args);
 
 void			base64_run(void *data_struct);
 
