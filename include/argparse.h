@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 13:14:59 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/22 01:19:11 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/24 02:30:56 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,17 @@ typedef struct		s_args
 enum				e_program
 {
 	BASE64,
+	DES,
 	DES_ECB,
 	DES_CBC,
 	NUMBER_OF_PROGRAMS
 };
 
 static char		*g_a[NUMBER_OF_PROGRAMS + 1] = {
-					"base64", "des", "des-cbc", NULL};
+					"base64", "des", "des-ecb", "des-cbc", NULL};
 static void		(*g_f[NUMBER_OF_PROGRAMS])(int, char **, void **) = {
-					base64_argparse, des_argparse, NULL};
+					base64_argparse, des_argparse, des_argparse, NULL};
 static void		(*g_r[NUMBER_OF_PROGRAMS])(void *) = {
-					base64_run, des_run, NULL};
+					base64_run, des_run, des_run, NULL};
 
 #endif
