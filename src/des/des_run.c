@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 01:19:58 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/23 01:19:40 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/24 02:13:34 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,18 @@ int		convert_hex_key(unsigned char *dst, const char *src)
 	return (0);
 }
 
-static void		des_output(t_des_config *data, t_byte *out, size_t len)
+static void		des_output(t_des_config *data, void *out, size_t len)
 {
 	t_byte		*b64_encoded;
 
-	if (data->b64_mode == NOBASE64)
+	if (data->b64_mode == BASE64 && data->mode == ENCRYPT_FLAG)
 	{
-		write(data->out_fd, (char*)out, len);
+		b64_encoded = (t_byte*)base64_encode((unsigned char*)out, len);
+		write(data->out_fd, b64_encoded, ft_strlen((char*)b64_encoded));
+		ft_memdel((void**)&b64_encoded);
 		return ;
 	}
-	b64_encoded = (t_byte*)base64_encode((unsigned char*)out, len);
-	write(data->out_fd, b64_encoded, ft_strlen((char*)b64_encoded));
-	ft_memdel((void**)&b64_encoded);
+	write(data->out_fd, (char*)out, len);
 }
 
 static void		cleanup(t_des_config *data, char *out, unsigned char *in)
@@ -87,7 +87,7 @@ void			des_run(void *arg)
 {
 	t_des_config	*data;
 	unsigned char	*in;
-	char			*out;
+	void			*out;
 	size_t			sum_len;
 
 	data = (t_des_config*)arg;
@@ -95,17 +95,17 @@ void			des_run(void *arg)
 	if (data->key_mode == KEY_STDIN)
 		set_pass(data);
 	if ((in = reader(data->in_fd, &sum_len)) == NULL)
-		return cleanup(data, out, in);
-	if (data->b64_mode == BASE64)
+		return cleanup(data, (char*)out, in);
+	if (data->b64_mode == BASE64 && data->mode == DECRYPT_FLAG)
 	{
-		out = base64_decode((char*)in, &sum_len);
+		out = (void*)base64_decode((char*)in, &sum_len);
 		ft_memdel((void**)&in);
 		in = (unsigned char*)out;
 	}
 	if (data->mode == ENCRYPT_FLAG)
-		out = des_encrypt(BYTE_ARRAY(in, sum_len), &(data->key[0]), NULL);
+		out = (void*)des_encrypt(BYTE_ARRAY(in, sum_len), &(data->key[0]), NULL);
 	else if (data->mode == DECRYPT_FLAG)
-		out = des_decrypt(BYTE_ARRAY(in, sum_len), &(data->key[0]), NULL);
+		out = (void*)des_decrypt(BYTE_ARRAY(in, sum_len), &(data->key[0]), NULL);
 	des_output(data, (t_byte*)out, sum_len);
-	cleanup(data, out, in);
+	cleanup(data, (char*)out, in);
 }

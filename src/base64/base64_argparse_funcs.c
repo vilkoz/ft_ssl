@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 14:22:09 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/18 16:36:35 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/24 02:18:47 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	base64_argparse_set_fileout(int ac, char **av, t_base64_config *data, int j)
 		return (-1);
 	}
 	data->out_mode = FILEOUT;
-	data->out_fd = open(av[j + 1], O_WRONLY | O_CREAT, 0664);
+	data->out_fd = open(av[j + 1], O_WRONLY | O_CREAT | O_TRUNC, 0664);
 	if (data->in_fd == -1)
 	{
 		perror("ft_ssl: base64");

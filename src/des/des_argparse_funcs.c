@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 00:13:36 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/22 23:17:00 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/24 02:18:08 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	des_argparse_set_fileout(int ac, char **av, t_des_config *data, int j)
 		return (-1);
 	}
 	data->out_mode = FILEOUT;
-	data->out_fd = open(av[j + 1], O_WRONLY | O_CREAT, 0664);
+	data->out_fd = open(av[j + 1], O_WRONLY | O_CREAT | O_TRUNC, 0664);
 	if (data->in_fd == -1)
 	{
 		perror("ft_ssl: des");
