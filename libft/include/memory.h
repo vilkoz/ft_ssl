@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/19 15:06:46 by vrybalko          #+#    #+#             */
-/*   Updated: 2017/11/19 15:07:18 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/26 01:20:26 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ int					ft_memcmp(const void *s1, const void *s2, size_t n);
 void				*ft_memalloc(size_t size);
 void				ft_memdel(void **ap);
 void				*ft_realloc(void *buf, size_t old_size, size_t size);
+void				*ft_memrcpy(void *dst, const void *src, size_t len);
 
 #endif

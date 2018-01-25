@@ -6,7 +6,7 @@
 #    By: vrybalko <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/23 14:08:11 by vrybalko          #+#    #+#              #
-#    Updated: 2018/01/18 17:48:18 by vrybalko         ###   ########.fr        #
+#    Updated: 2018/01/26 01:20:43 by vrybalko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ FLAGS = -Wall -Wextra -Werror -I include/ -g
 SRCS = memory/ft_memset.c						\
 	   memory/ft_bzero.c						\
 	   memory/ft_memcpy.c						\
+	   memory/ft_memrcpy.c						\
 	   memory/ft_memccpy.c						\
 	   memory/ft_memmove.c						\
 	   memory/ft_memchr.c						\

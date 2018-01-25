@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 01:19:58 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/25 01:44:42 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/26 01:21:56 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ int		convert_hex_key(unsigned char *dst, const char *src)
 	ft_bzero((void*)&(half[0]), 9);
 	ft_memcpy((void*)&(half[0]), (void*)&(arg[0]), 8);
 	tmp = ft_atoi_base((char*)&(half[0]), 16);
-	ft_memcpy((void*)dst, &tmp, 4);
+	ft_memrcpy((void*)dst, &tmp, 4);
 	ft_memcpy((void*)&(half[0]), (void*)&(arg[8]), 8);
 	tmp = ft_atoi_base((char*)&(half[0]), 16);
-	ft_memcpy((void*)(dst + 4), &tmp, 4);
+	ft_memrcpy((void*)(dst + 4), &tmp, 4);
 	return (0);
 }
 

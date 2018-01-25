@@ -6,22 +6,42 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 21:35:00 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/25 01:47:10 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/26 01:40:02 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "des.h"
 #include "libft.h"
+#include "des_operations_private.h"
 # include <stdio.h>
 
-static void		process_block(char *out, const t_byte_array in, t_key *keys,
-					t_des_action action)
+static void		process_block(char *out, const t_byte_array in,
+					t_cbc_context context, t_des_action action)
 {
 	t_byte		tmp[8];
+	t_byte		save_iv[8];
+	int			i;
 
 	ft_bzero((void*)&(tmp[0]), 8);
 	ft_memcpy((void*)&(tmp[0]), (void*)in.bytes, in.len);
-	des_process_block((t_byte*)out, &(tmp[0]), keys, action);
+	i = -1;
+	while (context.iv && ++i < 8)
+	{
+		if (action == ENCRYPT)
+			tmp[i] = tmp[i] ^ context.iv[i];
+		else
+			save_iv[i] = tmp[i];
+	}
+	des_process_block((t_byte*)out, &(tmp[0]), context.keys, action);
+	i = -1;
+	while (context.iv && ++i < 8)
+		if (action == ENCRYPT)
+			context.iv[i] = out[i];
+		else
+		{
+			out[i] = (char)(((t_byte)out[i]) ^ context.iv[i]);
+			context.iv[i] = save_iv[i];
+		}
 }
 
 static char		*des_ecb(t_byte_array in, t_byte *key, t_des_action action)
@@ -43,8 +63,8 @@ static char		*des_ecb(t_byte_array in, t_byte *key, t_des_action action)
 			break ;
 		}
 		process_block(out + i, BYTE_ARRAY((in.bytes + i),
-					(size_t)(i + 8) >= in.len ? in.len - (size_t)(i): 8),
-				&(keys[0]), action);
+				(size_t)(i + 8) >= in.len ? in.len - (size_t)(i): 8),
+				CBC_CONTEXT(&(keys[0]), NULL), action);
 	}
 	return (out);
 }
@@ -70,7 +90,7 @@ static char		*des_cbc(t_byte_array in, t_byte *key, t_des_action action,
 		}
 		process_block(out + i, BYTE_ARRAY((in.bytes + i),
 			(size_t)(i + 8) >= in.len ? in.len - (size_t)(i): 8),
-			&(keys[0]), action);
+			CBC_CONTEXT(&(keys[0]), iv), action);
 	}
 	return (out);
 }
@@ -81,12 +101,16 @@ static char		*des_cbc(t_byte_array in, t_byte *key, t_des_action action,
 
 char			*des_encrypt(t_byte_array in, t_byte *key, t_byte *iv)
 {
-	(void)iv;
-	return (des_ecb(in, key, ENCRYPT));
+	if (iv == NULL)
+		return (des_ecb(in, key, ENCRYPT));
+	else
+		return (des_cbc(in, key, ENCRYPT, iv));
 }
 
 char			*des_decrypt(t_byte_array in, t_byte *key, t_byte *iv)
 {
-	(void)iv;
-	return (des_ecb(in, key, DECRYPT));
+	if (iv == NULL)
+		return (des_ecb(in, key, DECRYPT));
+	else
+		return (des_cbc(in, key, DECRYPT, iv));
 }
