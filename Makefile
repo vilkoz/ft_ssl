@@ -6,7 +6,7 @@
 #    By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/18 13:19:24 by vrybalko          #+#    #+#              #
-#    Updated: 2018/01/25 01:34:10 by vrybalko         ###   ########.fr        #
+#    Updated: 2018/01/26 02:03:26 by vrybalko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,3 +65,5 @@ re: fclean all
 
 test: $(NAME)
 	cd src/base64; python3 base64_test.py
+	cd src/des; python3 des_cbc_test.py
+	cd src/des; python3 des_ecb_test.py

@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 21:35:00 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/26 01:40:02 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/26 01:52:10 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,14 @@ static void		process_block(char *out, const t_byte_array in,
 	ft_memcpy((void*)&(tmp[0]), (void*)in.bytes, in.len);
 	i = -1;
 	while (context.iv && ++i < 8)
-	{
 		if (action == ENCRYPT)
 			tmp[i] = tmp[i] ^ context.iv[i];
 		else
 			save_iv[i] = tmp[i];
-	}
 	des_process_block((t_byte*)out, &(tmp[0]), context.keys, action);
 	i = -1;
 	while (context.iv && ++i < 8)
+	{
 		if (action == ENCRYPT)
 			context.iv[i] = out[i];
 		else
@@ -42,6 +41,7 @@ static void		process_block(char *out, const t_byte_array in,
 			out[i] = (char)(((t_byte)out[i]) ^ context.iv[i]);
 			context.iv[i] = save_iv[i];
 		}
+	}
 }
 
 static char		*des_ecb(t_byte_array in, t_byte *key, t_des_action action)
