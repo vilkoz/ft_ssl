@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 13:43:29 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/25 01:07:34 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/27 16:03:30 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,10 @@
 static void				base64_output(t_base64_config *data, char *out,
 							size_t len)
 {
-	int		i;
-
 	if (data->mode == ENCODE)
 		ft_putstr_fd(out, data->out_fd);
 	else
-	{
-		i = -1;
-		while ((size_t)++i < len)
-			write(data->out_fd, out + i, 1);
-	}
+		write(data->out_fd, out, len);
 }
 
 void					base64_run(void *data_struct)

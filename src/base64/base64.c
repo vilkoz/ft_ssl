@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 23:08:41 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/23 00:34:13 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/27 16:16:43 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static char		b64_char_to_num(char c)
 	return (c != '=' ? ft_strchr(base64, c) - base64 : 0);
 }
 
-static char		*b64_sanitize(char *in)
+static char		*b64_sanitize(char *in, size_t *len)
 {
 	int		i;
 	int		j;
@@ -67,6 +67,7 @@ static char		*b64_sanitize(char *in)
 	char	*out;
 
 	count = 0;
+	*len = 0;
 	i = -1;
 	while (in[++i])
 		if (ft_strchr(BASE64_DICT, in[i]) || in[i] == '=')
@@ -80,6 +81,8 @@ static char		*b64_sanitize(char *in)
 		{
 			out[j] = in[i];
 			j++;
+			if (in[i] != '=')
+				(*len)++;
 		}
 	}
 	ft_memdel((void*)&in);
@@ -93,9 +96,9 @@ char			*base64_decode(char *in, size_t *len)
 	int					j;
 	t_convert_word		convert_word;
 
-	in = b64_sanitize(in);
-	*len = CEIL_DIV(ft_strlen(in), 4) * 3;
-	out = ft_strnew(*len);
+	in = b64_sanitize(in, len);
+	*len = (size_t)(((float)*len / 4.0) * 3.0);
+	out = ft_strnew(CEIL_DIV(ft_strlen(in), 4) * 3);
 	convert_word.field = 0;
 	i = -1;
 	j = 0;
