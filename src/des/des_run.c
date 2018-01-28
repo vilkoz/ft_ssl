@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 01:19:58 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/26 01:21:56 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/29 00:18:38 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,12 +104,9 @@ void			des_run(void *arg)
 		ft_memdel((void**)&in);
 		in = (unsigned char*)out;
 	}
-	if (data->mode == ENCRYPT_FLAG)
-		out = (void*)des_encrypt(BYTE_ARRAY(in, sum_len),
-			&(data->key[0]), data->chiper_mode == CBC ? &(data->iv[0]): NULL);
-	else if (data->mode == DECRYPT_FLAG)
-		out = (void*)des_decrypt(BYTE_ARRAY(in, sum_len),
-			&(data->key[0]), data->chiper_mode == CBC ? &(data->iv[0]): NULL);
+	out = (void*)des_process_blocks(BYTE_ARRAY(in, sum_len),
+		&(data->key[0]), data->chiper_mode == CBC ? &(data->iv[0]): NULL,
+		data->mode == ENCRYPT_FLAG ? ENCRYPT : DECRYPT);
 	des_output(data, (t_byte*)out, sum_len);
 	cleanup(data, (char*)out, in);
 }

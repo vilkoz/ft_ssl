@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 19:33:08 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/25 01:39:37 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/29 00:19:14 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void					gen_keys(const t_init_key init_key, t_key *keys,
 ** @key and @iv should be 8bytes long
 */
 
-char					*des_encrypt(t_byte_array in, t_byte *key, t_byte *iv);
-char					*des_decrypt(t_byte_array in, t_byte *key, t_byte *iv);
+char					*des_process_blocks(t_byte_array in, t_byte *key,
+							t_byte *iv, t_des_action action);
 
 #endif

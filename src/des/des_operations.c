@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 21:35:00 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/26 01:52:10 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/29 00:17:01 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,18 +99,11 @@ static char		*des_cbc(t_byte_array in, t_byte *key, t_des_action action,
 ** @key and @iv should be 8bytes long
 */
 
-char			*des_encrypt(t_byte_array in, t_byte *key, t_byte *iv)
+char			*des_process_blocks(t_byte_array in, t_byte *key, t_byte *iv,
+					t_des_action action)
 {
 	if (iv == NULL)
-		return (des_ecb(in, key, ENCRYPT));
+		return (des_ecb(in, key, action));
 	else
-		return (des_cbc(in, key, ENCRYPT, iv));
-}
-
-char			*des_decrypt(t_byte_array in, t_byte *key, t_byte *iv)
-{
-	if (iv == NULL)
-		return (des_ecb(in, key, DECRYPT));
-	else
-		return (des_cbc(in, key, DECRYPT, iv));
+		return (des_cbc(in, key, action, iv));
 }
