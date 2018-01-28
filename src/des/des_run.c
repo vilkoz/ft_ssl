@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 01:19:58 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/29 00:18:38 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/29 01:08:39 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,16 @@ static void		des_output(t_des_config *data, void *out, size_t len)
 {
 	t_byte		*b64_encoded;
 
+	if (data->mode == DECRYPT_FLAG)
+	{
+		if (len % 8 != 0)
+			len -= len % 8;
+	}
 	if (data->b64_mode == BASE64 && data->mode == ENCRYPT_FLAG)
 	{
 		b64_encoded = (t_byte*)base64_encode((unsigned char*)out, len);
 		write(data->out_fd, b64_encoded, ft_strlen((char*)b64_encoded));
+		ft_putchar_fd('\n', data->out_fd);
 		ft_memdel((void**)&b64_encoded);
 		return ;
 	}
