@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 01:19:58 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/29 14:07:07 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/29 14:22:59 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ void			des_run(void *arg)
 	out = NULL;
 	if (data->key_mode == KEY_STDIN)
 		set_pass(data);
-	if ((in = reader(data->in_fd, &sum_len)) == NULL)
+	if ((in = reader(data->in_fd, &sum_len)) == NULL && data->mode == DECRYPT)
 		return cleanup(data, (char*)out, in);
 	if (data->b64_mode == BASE64 && data->mode == DECRYPT_FLAG)
 	{
