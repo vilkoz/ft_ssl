@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 17:14:54 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/29 21:10:08 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/30 01:52:58 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void		set_pass(t_des3_config *data)
 	int			i;
 
 	ft_memset((void*)&(tmp[0]), '0', 48);
-	pass = getpass("enter pass:");
+	pass = getpass("enter key in hex:");
 	ft_memcpy((void*)&(tmp[0]), (void*)pass, MIN(ft_strlen(pass), 48));
 	i = -1;
 	while (++i < 3)
@@ -35,8 +35,27 @@ static void		set_pass(t_des3_config *data)
 			ft_putstr_fd("ft_ssl: des: wrong hex char in key: ", 2);
 			ft_putchar_fd((char)-ret, 2);
 			ft_putchar_fd('\n', 2);
-			exit(1);
+			return (-1);
 		}
+	}
+}
+
+static void		set_initial_vector(t_des3_config *data)
+{
+	char		tmp[16];
+	char		*pass;
+	int			ret;
+
+	ft_memset((void*)&(tmp[0]), '0', 16);
+	pass = getpass("enter key in hex:");
+	ft_memcpy((void*)&(tmp[0]), (void*)pass, MIN(ft_strlen(pass), 16));
+	if ((ret = convert_hex_key(&(((t_des3_config*)data)->iv[0]),
+			&(tmp[0]))) < 0)
+	{
+		ft_putstr_fd("ft_ssl: des: wrong hex char in iv: ", 2);
+		ft_putchar_fd((char)-ret, 2);
+		ft_putchar_fd('\n', 2);
+		return (-1);
 	}
 }
 
@@ -83,7 +102,7 @@ void			des3_run(void *arg)
 
 	data = (t_des3_config*)arg;
 	if (data->iv_status == 0)
-		return (ft_putendl_fd("ft_ssl: des-cbc: no -iv provided!", 2));
+		set_initial_vector(data);
 	out = NULL;
 	if (data->key_mode == KEY_STDIN)
 		set_pass(data);
