@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 01:19:58 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/29 15:17:09 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/29 15:39:34 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 int		convert_hex_key(unsigned char *dst, const char *src)
 {
-	unsigned char		arg[16];
+	unsigned char		arg[17];
 	unsigned char		half[9];
 	int					tmp;
 	int					i;
@@ -35,8 +35,10 @@ int		convert_hex_key(unsigned char *dst, const char *src)
 					&& ft_tolower(src[i]) <= 'f'))
 			return (-src[i]);
 	ft_bzero((void*)dst, 8);
-	ft_bzero((void*)&(arg[0]), 16);
-	ft_strncpy((char*)&(arg[0]), (src), 16);
+	ft_bzero((void*)&(arg[0]), 17);
+	ft_memset((void*)&(arg[0]), '0', 16);
+	ft_memcpy((void*)&(arg[0]), (void*)(src),
+			ft_strlen(src) < 16 ? ft_strlen(src) : 16);
 	ft_bzero((void*)&(half[0]), 9);
 	ft_memcpy((void*)&(half[0]), (void*)&(arg[0]), 8);
 	tmp = ft_atoi_base((char*)&(half[0]), 16);
