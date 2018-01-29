@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 17:00:36 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/29 18:08:10 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/29 21:09:03 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,7 @@ int	des3_argparse_set_keyarg(int ac, char **av, void *data, int j)
 		return (-1);
 	}
 	ft_memset((void*)&(tmp[0]), '0', 48);
-	ft_memcpy((void*)&(tmp[0]), (void*)av[j + 1],
-			MIN(ft_strlen(av[j + 1]), 48));
+	ft_memcpy((void*)&(tmp[0]), av[j + 1], MIN(ft_strlen(av[j + 1]), 48));
 	i = -1;
 	while (++i < 3)
 	{

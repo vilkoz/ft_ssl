@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 21:05:29 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/22 21:07:47 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/29 20:55:34 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdlib.h>
 
-#define B64_BUF 24
+# define B64_BUF 24
 
 unsigned char			*reader(int fd, size_t *sum_len);
 

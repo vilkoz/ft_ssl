@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 16:55:24 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/29 18:08:43 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/29 20:59:05 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ static int		(*g_funcs[NUMBER_OF_FLAGS])(int,
 	des3_argparse_set_keyarg,
 	NULL,
 	des3_cbc_argparse_set_iv,
-	NULL
 };
 
 void			des3_argparse(int ac, char **av, void **data_struct,

@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 23:08:41 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/29 12:27:34 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/29 20:57:32 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,10 @@ static char		*b64_sanitize(char *in, size_t *len)
 		{
 			out[j] = in[i];
 			j++;
-			if (in[i] != '=')
-				(*len)++;
+			(in[i] != '=') ? (*len)++ : 0;
 		}
 	}
+	*len = (size_t)(((float)*len / 4.0) * 3.0);
 	return (out);
 }
 
@@ -96,7 +96,6 @@ char			*base64_decode(char *in, size_t *len)
 	t_convert_word		convert_word;
 
 	in = b64_sanitize(in, len);
-	*len = (size_t)(((float)*len / 4.0) * 3.0);
 	out = ft_strnew(CEIL_DIV(ft_strlen(in), 4) * 3);
 	convert_word.field = 0;
 	i = -1;

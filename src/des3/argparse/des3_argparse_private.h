@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 16:55:42 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/29 18:05:00 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/29 21:15:56 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,5 @@ typedef struct		s_des3_config
 int					convert_hex_key(unsigned char *dst, const char *src);
 
 void				add_padd(unsigned char **in, size_t *len);
-
 
 #endif

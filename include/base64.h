@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 23:11:51 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/25 00:51:02 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/29 20:55:22 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char			*base64_encode(unsigned char *in, size_t len);
 char			*base64_decode(char *in, size_t *len);
 
 void			base64_argparse(int ac, char **av, void **data_struct,
-						struct s_args * args);
+						struct s_args *args);
 
 void			base64_run(void *data_struct);
 

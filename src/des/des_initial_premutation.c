@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 19:55:09 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/21 20:11:43 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/29 21:04:00 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static t_byte	g_final_permutation[] = {
 	33, 1, 41, 9, 49, 17, 57, 25
 };
 
-static t_byte	g_expansion_permutation[] = 
+static t_byte	g_expansion_permutation[] =
 {
 	32, 1, 2, 3, 4, 5,
 	4, 5, 6, 7, 8, 9,
@@ -46,7 +46,6 @@ static t_byte	g_expansion_permutation[] =
 	24, 25, 26, 27, 28, 29,
 	28, 29, 30, 31, 32, 1
 };
-
 
 /*
 ** apply inital_permutation on 64bits @src
@@ -98,4 +97,3 @@ void			expansion_permutation(t_byte *dst, const t_byte *r)
 	while (++i < 48)
 		SET_NTH_BIT(dst, i + 1, GET_NTH_BIT(r, g_expansion_permutation[i]));
 }
-

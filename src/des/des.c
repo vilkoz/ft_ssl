@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 22:52:15 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/21 20:12:02 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/29 21:08:11 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ static void		s_block_transformation(t_byte *dst, const t_byte *b_blocks)
 			s = (i - 1) / 6;
 			res[0] = 0;
 			res[0] = transform_one_s_block(input[0], s);
-			j = - 1;
+			j = -1;
 			while (++j < 4)
 				SET_NTH_BIT(dst, j + 1 + s * 4, ((res[0] >> (3 - j)) & 0x1));
 			input[0] = 0;

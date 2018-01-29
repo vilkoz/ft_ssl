@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 01:19:58 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/29 17:22:32 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/29 21:18:12 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 ** @dst should be 8bytes long
 */
 
-int		convert_hex_key(unsigned char *dst, const char *src)
+int				convert_hex_key(unsigned char *dst, const char *src)
 {
 	unsigned char		arg[17];
 	unsigned char		half[9];
@@ -94,10 +94,10 @@ static void		set_pass(t_des_config *data)
 	ft_strncpy(tmp, pass, 16);
 	if ((ret = convert_hex_key(&(data->key[0]), &(tmp[0]))) < 0)
 	{
-			ft_putstr_fd("ft_ssl: des: wrong hex char in key: ", 2);
-			ft_putchar_fd((char)-ret, 2);
-			ft_putchar_fd('\n', 2);
-			exit(1);
+		ft_putstr_fd("ft_ssl: des: wrong hex char in key: ", 2);
+		ft_putchar_fd((char)-ret, 2);
+		ft_putchar_fd('\n', 2);
+		exit(1);
 	}
 }
 
@@ -124,12 +124,12 @@ void			des_run(void *arg)
 
 	data = (t_des_config*)arg;
 	if (data->chiper_mode == CBC && data->iv_status == 0)
-		return ft_putendl_fd("ft_ssl: des-cbc: no -iv provided!", 2);
+		return (ft_putendl_fd("ft_ssl: des-cbc: no -iv provided!", 2));
 	out = NULL;
 	if (data->key_mode == KEY_STDIN)
 		set_pass(data);
 	if ((in = reader(data->in_fd, &sum_len)) == NULL && data->mode == DECRYPT)
-		return cleanup(data, (char*)out, in);
+		return (cleanup(data, (char*)out, in));
 	if (data->b64_mode == BASE64 && data->mode == DECRYPT_FLAG)
 	{
 		out = (void*)base64_decode((char*)in, &sum_len);

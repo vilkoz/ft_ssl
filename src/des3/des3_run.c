@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 17:14:54 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/29 17:55:19 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/29 21:10:08 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,12 @@ void			des3_run(void *arg)
 
 	data = (t_des3_config*)arg;
 	if (data->iv_status == 0)
-		return ft_putendl_fd("ft_ssl: des-cbc: no -iv provided!", 2);
+		return (ft_putendl_fd("ft_ssl: des-cbc: no -iv provided!", 2));
 	out = NULL;
 	if (data->key_mode == KEY_STDIN)
 		set_pass(data);
 	if ((in = reader(data->in_fd, &sum_len)) == NULL && data->mode == DECRYPT)
-		return cleanup(data, (char*)out, in);
+		return (cleanup(data, (char*)out, in));
 	if (data->b64_mode == BASE64 && data->mode == DECRYPT_FLAG)
 	{
 		out = (void*)base64_decode((char*)in, &sum_len);

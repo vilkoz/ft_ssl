@@ -6,14 +6,13 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 21:35:00 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/29 17:43:40 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/29 21:05:08 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "des.h"
 #include "libft.h"
 #include "des_operations_private.h"
-# include <stdio.h>
 
 static void		process_block(char *out, const t_byte_array in,
 					t_cbc_context context, t_des_action action)
@@ -55,7 +54,7 @@ static char		*des_ecb(t_byte_array in, t_byte *key, t_des_action action)
 	gen_keys(init_key, &(keys[0]), ENCRYPT);
 	out = ft_strnew(in.len + (8 - in.len % 8));
 	i = -8;
-	while ((size_t)(i+=8) < in.len)
+	while ((size_t)(i += 8) < in.len)
 	{
 		if (action == DECRYPT && (in.len % 8 != 0) && (size_t)(i + 8) >= in.len)
 		{
@@ -63,7 +62,7 @@ static char		*des_ecb(t_byte_array in, t_byte *key, t_des_action action)
 			break ;
 		}
 		process_block(out + i, BYTE_ARRAY((in.bytes + i),
-				(size_t)(i + 8) >= in.len ? in.len - (size_t)(i): 8),
+				(size_t)(i + 8) >= in.len ? in.len - (size_t)(i) : 8),
 				CBC_CONTEXT(&(keys[0]), NULL), action);
 	}
 	return (out);
@@ -89,7 +88,7 @@ static char		*des_cbc(t_byte_array in, t_byte *key, t_des_action action,
 			break ;
 		}
 		process_block(out + i, BYTE_ARRAY((in.bytes + i),
-			(size_t)(i + 8) >= in.len ? in.len - (size_t)(i): 8),
+			(size_t)(i + 8) >= in.len ? in.len - (size_t)(i) : 8),
 			CBC_CONTEXT(&(keys[0]), iv), action);
 	}
 	return (out);

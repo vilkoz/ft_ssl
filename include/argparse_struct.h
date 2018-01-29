@@ -5,13 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/25 00:48:27 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/25 00:54:15 by vrybalko         ###   ########.fr       */
+/*   Created: 2018/01/29 21:03:04 by vrybalko          #+#    #+#             */
+/*   Updated: 2018/01/29 21:03:06 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ARGPARSE_STUCT_H
-# define ARGPARSE_STUCT_H
+#ifndef ARGPARSE_STRUCT_H
+# define ARGPARSE_STRUCT_H
 
 typedef struct		s_args
 {
