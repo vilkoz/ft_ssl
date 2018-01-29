@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 23:45:42 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/25 01:29:16 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/29 13:22:22 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 #include "argparse_struct.h"
 
 static char		*g_flags[NUMBER_OF_FLAGS] = {
-	"-d",
 	"-e",
+	"-d",
 	NULL,
 	"-i",
 	NULL,
@@ -29,8 +29,8 @@ static char		*g_flags[NUMBER_OF_FLAGS] = {
 
 static int		(*g_funcs[NUMBER_OF_FLAGS])(int,
 					char **, void *, int) = {
-	des_argparse_set_decode,
 	NULL,
+	des_argparse_set_decode,
 	NULL,
 	des_argparse_set_filein,
 	NULL,

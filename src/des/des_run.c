@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 01:19:58 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/29 01:08:39 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/29 14:07:07 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,10 @@ static void		des_output(t_des_config *data, void *out, size_t len)
 		ft_memdel((void**)&b64_encoded);
 		return ;
 	}
-	write(data->out_fd, (char*)out, len);
+	if (data->mode == ENCRYPT_FLAG)
+		write(data->out_fd, (char*)out, len);
+	else
+		write(data->out_fd, (char*)out, len - ((unsigned char*)out)[len - 1]);
 }
 
 static void		cleanup(t_des_config *data, char *out, unsigned char *in)
@@ -89,6 +92,20 @@ static void		set_pass(t_des_config *data)
 	convert_hex_key(&(data->key[0]), &(tmp[0]));
 }
 
+void			add_padd(unsigned char **in, size_t *len)
+{
+	void				*out;
+	unsigned char		padd_size;
+
+	padd_size = 8 - (*len % 8);
+	out = (void*)ft_strnew(*len + padd_size);
+	ft_memcpy((void*)out, (void*)*in, *len);
+	ft_memset((void*)(out + (*len)), padd_size, (size_t)padd_size);
+	ft_memdel((void**)in);
+	*in = out;
+	*len = *len + padd_size;
+}
+
 void			des_run(void *arg)
 {
 	t_des_config	*data;
@@ -110,6 +127,8 @@ void			des_run(void *arg)
 		ft_memdel((void**)&in);
 		in = (unsigned char*)out;
 	}
+	if (data->mode == ENCRYPT_FLAG)
+		add_padd(&in, &sum_len);
 	out = (void*)des_process_blocks(BYTE_ARRAY(in, sum_len),
 		&(data->key[0]), data->chiper_mode == CBC ? &(data->iv[0]): NULL,
 		data->mode == ENCRYPT_FLAG ? ENCRYPT : DECRYPT);

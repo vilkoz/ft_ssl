@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 23:38:48 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/25 01:36:20 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/29 13:22:12 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 
 enum				e_args_flags
 {
-	DECRYPT_FLAG,
 	ENCRYPT_FLAG,
+	DECRYPT_FLAG,
 	STDIN,
 	FILEIN,
 	STDOUT,

@@ -18,18 +18,18 @@ for _ in range(100):
         print(e)
     encoded_text = encoded_text.decode()
     decoded_text = decoded_text.decode()
-    ssl_encoded = ssl_encoded.decode()
+    ssl_encoded = ssl_encoded.decode().replace("\n", "") + "\n"
     encoded, decoded = encoded_text, decoded_text
-    if decoded != s or decoded != ssl_decoded.decode():
-        print("ERROR! :")
-        print(decoded, " <- decoded")
-        print(s, " <- s")
-        break
-    elif encoded != ssl_encoded:
+    if encoded != ssl_encoded:
         print("ERROR! :")
         print(s, " <- input")
         print(encoded, " <- encoded")
         print(ssl_encoded, " <- ssl_encoded")
+        break
+    elif decoded != s or decoded != ssl_decoded.decode():
+        print("ERROR! :")
+        print(decoded, " <- decoded")
+        print(s, " <- s")
         break
     else:
         print("OK len = %d" % length)
