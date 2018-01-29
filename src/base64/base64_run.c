@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 13:43:29 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/27 16:03:30 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/29 12:27:30 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,5 @@ void					base64_run(void *data_struct)
 		close(data->out_fd);
 	ft_memdel((void**)&out);
 	ft_memdel((void**)&data);
+	ft_memdel((void*)&in);
 }

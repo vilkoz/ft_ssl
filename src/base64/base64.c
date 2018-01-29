@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 23:08:41 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/27 16:16:43 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/29 12:27:34 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ static char		*b64_sanitize(char *in, size_t *len)
 				(*len)++;
 		}
 	}
-	ft_memdel((void*)&in);
 	return (out);
 }
 
@@ -115,6 +114,6 @@ char			*base64_decode(char *in, size_t *len)
 	}
 	REV_B64_CHAR(convert_word.byte);
 	ft_memcpy((void*)(out + j), (void*)convert_word.byte, 3);
-	ft_memdel((void**)&in);
+	ft_memdel((void*)&in);
 	return (out);
 }

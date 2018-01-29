@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 21:03:14 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/22 22:21:24 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/29 12:33:00 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,15 @@ static t_list			*read_loop(int fd, size_t *sum_len)
 	return (list);
 }
 
-static unsigned char	*join_list(t_list *list, size_t *sum_len)
+static unsigned char	*join_list(t_list **list, size_t *sum_len)
 {
 	unsigned char		*out;
 	size_t				i;
 	t_list				*tmp;
 
 	out = (unsigned char*)ft_strnew(*sum_len);
-	list = ft_lst_rev(list);
-	tmp = list;
+	*list = ft_lst_rev(*list);
+	tmp = *list;
 	i = 0;
 	while (tmp && i < *sum_len)
 	{
@@ -59,7 +59,7 @@ unsigned char			*reader(int fd, size_t *sum_len)
 	list = read_loop(fd, sum_len);
 	if (*sum_len == 0)
 		return (NULL);
-	out = join_list(list, sum_len);
+	out = join_list(&list, sum_len);
 	ft_lstdel(&list, NULL);
 	return (out);
 }
