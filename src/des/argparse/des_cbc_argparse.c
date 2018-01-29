@@ -6,11 +6,12 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 01:25:29 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/25 01:38:12 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/29 18:01:30 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "des_argparse_funcs.h"
+#include "des_argparse_private.h"
 #include "libft.h"
 #include "argparse_struct.h"
 

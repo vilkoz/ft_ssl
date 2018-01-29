@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 01:19:58 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/29 15:39:34 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/29 17:22:32 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,18 @@ static void		set_pass(t_des_config *data)
 {
 	char		tmp[17];
 	char		*pass;
+	int			ret;
 
-	ft_bzero((void*)&(tmp[0]), 17);
+	ft_memset((void*)&(tmp[0]), '0', 17);
 	pass = getpass("enter pass:");
 	ft_strncpy(tmp, pass, 16);
-	convert_hex_key(&(data->key[0]), &(tmp[0]));
+	if ((ret = convert_hex_key(&(data->key[0]), &(tmp[0]))) < 0)
+	{
+			ft_putstr_fd("ft_ssl: des: wrong hex char in key: ", 2);
+			ft_putchar_fd((char)-ret, 2);
+			ft_putchar_fd('\n', 2);
+			exit(1);
+	}
 }
 
 void			add_padd(unsigned char **in, size_t *len)
@@ -129,10 +136,9 @@ void			des_run(void *arg)
 		ft_memdel((void**)&in);
 		in = (unsigned char*)out;
 	}
-	if (data->mode == ENCRYPT_FLAG)
-		add_padd(&in, &sum_len);
+	(data->mode == ENCRYPT_FLAG) ? add_padd(&in, &sum_len) : 0;
 	out = (void*)des_process_blocks(BYTE_ARRAY(in, sum_len),
-		&(data->key[0]), data->chiper_mode == CBC ? &(data->iv[0]): NULL,
+		&(data->key[0]), data->chiper_mode == CBC ? &(data->iv[0]) : NULL,
 		data->mode == ENCRYPT_FLAG ? ENCRYPT : DECRYPT);
 	des_output(data, (t_byte*)out, sum_len);
 	cleanup(data, (char*)out, in);

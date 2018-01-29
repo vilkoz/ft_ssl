@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 12:35:49 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/25 01:40:38 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/29 17:50:34 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 #include "argparse.h"
 
 static char			*g_a[NUMBER_OF_PROGRAMS + 1] = {
-						"base64", "des", "des-ecb", "des-cbc", NULL};
+						"base64", "des", "des-ecb", "des-cbc", "des3", NULL};
 static void			(*g_f[NUMBER_OF_PROGRAMS])(int, char **, void **,
 						t_args *args) = {
 						base64_argparse, des_argparse, des_argparse,
-						des_cbc_argparse};
+						des_cbc_argparse, des3_argparse};
 static void			(*g_r[NUMBER_OF_PROGRAMS])(void *) = {
-						base64_run, des_run, des_run, des_run};
+						base64_run, des_run, des_run, des_run, des3_run};
 
 void	argparse(int ac, char **av, t_args *args_struct)
 {
