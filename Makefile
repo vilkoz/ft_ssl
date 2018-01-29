@@ -6,7 +6,7 @@
 #    By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/18 13:19:24 by vrybalko          #+#    #+#              #
-#    Updated: 2018/01/29 17:49:38 by vrybalko         ###   ########.fr        #
+#    Updated: 2018/01/30 01:27:31 by vrybalko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,3 +71,4 @@ test: $(NAME)
 	cd src/base64; python3 base64_test.py
 	cd src/des; python3 des_cbc_test.py
 	cd src/des; python3 des_ecb_test.py
+	cd src/des3; python3 des3_test.py

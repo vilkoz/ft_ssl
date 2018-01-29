@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 01:19:58 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/29 21:18:12 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/30 00:57:49 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int				convert_hex_key(unsigned char *dst, const char *src)
 	if (!dst || !src)
 		return (-1);
 	i = -1;
-	while (src[++i])
+	while (++i < 8)
 		if (!ft_isdigit(src[i]) && !(ft_tolower(src[i]) >= 'a'
 					&& ft_tolower(src[i]) <= 'f'))
 			return (-src[i]);
@@ -52,6 +52,7 @@ int				convert_hex_key(unsigned char *dst, const char *src)
 static void		des_output(t_des_config *data, void *out, size_t len)
 {
 	t_byte		*b64_encoded;
+	size_t		pad_size;
 
 	if (data->mode == DECRYPT_FLAG)
 	{
@@ -69,7 +70,11 @@ static void		des_output(t_des_config *data, void *out, size_t len)
 	if (data->mode == ENCRYPT_FLAG)
 		write(data->out_fd, (char*)out, len);
 	else
-		write(data->out_fd, (char*)out, len - ((unsigned char*)out)[len - 1]);
+	{
+		pad_size = ((unsigned char*)out)[len - 1];
+		pad_size < len ? write(data->out_fd, (char*)out, len - pad_size) : 0;
+		pad_size >= len ? ft_putendl_fd("./ft_ssl: des: bad decrypt", 2) : 0;
+	}
 }
 
 static void		cleanup(t_des_config *data, char *out, unsigned char *in)

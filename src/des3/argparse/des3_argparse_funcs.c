@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 17:00:36 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/29 21:09:03 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/30 01:19:52 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	des3_argparse_set_keyarg(int ac, char **av, void *data, int j)
 	i = -1;
 	while (++i < 3)
 	{
-		if ((ret = convert_hex_key(&(((t_des3_config*)data)->key[i * 16]),
+		if ((ret = convert_hex_key(&(((t_des3_config*)data)->key[i * 8]),
 						&(tmp[i * 16]))) < 0)
 		{
 			ft_putstr_fd("ft_ssl: des: wrong hex char in key: ", 2);

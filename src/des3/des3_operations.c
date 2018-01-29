@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 17:34:25 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/29 21:27:50 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/30 01:33:35 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,26 @@
 #include "libft.h"
 #include "../des/des_operations_private.h"
 
-static void		process_block(char *out, const t_byte_array in,
-					t_cbc_context context, t_des_action action)
+static void		cbc_xor_begin(t_cbc_context context, t_byte *tmp,
+					t_byte *save_iv, t_des_action action)
 {
-	t_byte		tmp[8];
-	t_byte		tmp2[8];
-	t_byte		save_iv[8];
-	int			i;
+	int		i;
 
-	ft_bzero((void*)&(tmp[0]), 8);
-	ft_bzero((void*)&(tmp[0]), 8);
-	ft_memcpy((void*)&(tmp[0]), (void*)in.bytes, in.len);
 	i = -1;
 	while (context.iv && ++i < 8)
+	{
 		if (action == ENCRYPT)
 			tmp[i] = tmp[i] ^ context.iv[i];
 		else
 			save_iv[i] = tmp[i];
-	des_process_block(&(tmp2[0]), &(tmp[0]), context.keys, action);
-	des_process_block(&(tmp[0]), &(tmp2[0]), context.keys,
-			action == ENCRYPT ? DECRYPT : ENCRYPT);
-	des_process_block((t_byte*)out, &(tmp[0]), context.keys, action);
+	}
+}
+
+static void		cbc_xor_end(char *out, t_cbc_context context, t_byte *save_iv,
+					t_des_action action)
+{
+	int			i;
+
 	i = -1;
 	while (context.iv && ++i < 8)
 	{
@@ -48,8 +47,28 @@ static void		process_block(char *out, const t_byte_array in,
 	}
 }
 
+static void		process_block(char *out, const t_byte_array in,
+					t_cbc_context context, t_des_action action)
+{
+	t_byte		tmp[8];
+	t_byte		tmp2[8];
+	t_byte		save_iv[8];
+
+	ft_bzero((void*)&(tmp[0]), 8);
+	ft_bzero((void*)&(tmp2[0]), 8);
+	ft_memcpy((void*)&(tmp[0]), (void*)in.bytes, in.len);
+	cbc_xor_begin(context, &(tmp[0]), &(save_iv[0]), action);
+	des_process_block(&(tmp2[0]), &(tmp[0]),
+			context.keys + (action == ENCRYPT ? 0 : 34), action);
+	des_process_block(&(tmp[0]), &(tmp2[0]), context.keys + 17,
+			action == ENCRYPT ? DECRYPT : ENCRYPT);
+	des_process_block((t_byte*)out, &(tmp[0]),
+			context.keys + (action == ENCRYPT ? 34 : 0), action);
+	cbc_xor_end(out, context, &(save_iv[0]), action);
+}
+
 char			*des3_process_blocks(t_byte_array in, t_byte *key,
-					t_des_action action, t_byte *iv)
+					t_byte *iv, t_des_action action)
 {
 	int				i;
 	char			*out;
@@ -57,8 +76,8 @@ char			*des3_process_blocks(t_byte_array in, t_byte *key,
 	t_init_key		init_key[3];
 
 	ft_memcpy((void*)&(init_key[0].bytes[0]), (void*)key, 8);
-	ft_memcpy((void*)&(init_key[1].bytes[0]), (void*)key + 8, 8);
-	ft_memcpy((void*)&(init_key[2].bytes[0]), (void*)key + 16, 8);
+	ft_memcpy((void*)&(init_key[1].bytes[0]), (void*)(key + 8), 8);
+	ft_memcpy((void*)&(init_key[2].bytes[0]), (void*)(key + 16), 8);
 	gen_keys(init_key[0], &(keys[17 * 0]), ENCRYPT);
 	gen_keys(init_key[1], &(keys[17 * 1]), ENCRYPT);
 	gen_keys(init_key[2], &(keys[17 * 2]), ENCRYPT);
@@ -72,7 +91,7 @@ char			*des3_process_blocks(t_byte_array in, t_byte *key,
 			break ;
 		}
 		process_block(out + i, BYTE_ARRAY((in.bytes + i), 8),
-			CBC_CONTEXT(&(keys[17 * i]), iv), action);
+			CBC_CONTEXT(&(keys[0]), iv), action);
 	}
 	return (out);
 }
