@@ -6,13 +6,13 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 01:19:58 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/29 14:22:59 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/29 15:17:09 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "des.h"
-#include "des_argparse_private.h"
+#include "argparse/des_argparse_private.h"
 #include "reader.h"
 #include "base64.h"
 

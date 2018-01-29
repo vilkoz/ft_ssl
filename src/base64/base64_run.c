@@ -6,11 +6,11 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 13:43:29 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/29 12:27:30 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/29 15:15:30 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "base64_argparse_private.h"
+#include "argparse/base64_argparse_private.h"
 #include "libft.h"
 #include "base64.h"
 #include "reader.h"
