@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 01:19:58 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/30 00:57:49 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/30 23:24:39 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,16 +88,16 @@ static void		cleanup(t_des_config *data, char *out, unsigned char *in)
 	ft_memdel((void**)&data);
 }
 
-static void		set_pass(t_des_config *data)
+static void		set_pass(t_byte *key, const char *prompt)
 {
 	char		tmp[17];
 	char		*pass;
 	int			ret;
 
 	ft_memset((void*)&(tmp[0]), '0', 17);
-	pass = getpass("enter pass:");
+	pass = getpass(prompt);
 	ft_strncpy(tmp, pass, 16);
-	if ((ret = convert_hex_key(&(data->key[0]), &(tmp[0]))) < 0)
+	if ((ret = convert_hex_key(key, &(tmp[0]))) < 0)
 	{
 		ft_putstr_fd("ft_ssl: des: wrong hex char in key: ", 2);
 		ft_putchar_fd((char)-ret, 2);
@@ -128,11 +128,11 @@ void			des_run(void *arg)
 	size_t			sum_len;
 
 	data = (t_des_config*)arg;
-	if (data->chiper_mode == CBC && data->iv_status == 0)
-		return (ft_putendl_fd("ft_ssl: des-cbc: no -iv provided!", 2));
 	out = NULL;
 	if (data->key_mode == KEY_STDIN)
-		set_pass(data);
+		set_pass(&(data->key[0]), "enter key in hex: ");
+	if (data->iv_status == 0 && data->chiper_mode == CBC)
+		set_pass(&(data->iv[0]), "enter iv in hex: ");
 	if ((in = reader(data->in_fd, &sum_len)) == NULL && data->mode == DECRYPT)
 		return (cleanup(data, (char*)out, in));
 	if (data->b64_mode == BASE64 && data->mode == DECRYPT_FLAG)

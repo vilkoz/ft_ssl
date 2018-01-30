@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 12:35:49 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/30 02:01:23 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/30 23:43:00 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 /*
 ** TODO:
 ** [x] sleep
-** [ ] des-cbc read iv from input
+** [x] des-cbc read iv from input
 ** [ ] des3 display iv in getpass
 ** [ ] des3-ecb mode
 ** [ ] progams list
