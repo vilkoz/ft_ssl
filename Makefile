@@ -6,7 +6,7 @@
 #    By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/18 13:19:24 by vrybalko          #+#    #+#              #
-#    Updated: 2018/01/30 01:27:31 by vrybalko         ###   ########.fr        #
+#    Updated: 2018/01/31 00:16:10 by vrybalko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ SRCS = main.c									\
 	   des3/des3_run.c							\
 	   des3/des3_operations.c					\
 	   des3/argparse/des3_argparse.c			\
+	   des3/argparse/des3_ecb_argparse.c		\
 	   des3/argparse/des3_argparse_funcs.c		\
 
 BIN_DIR = bin

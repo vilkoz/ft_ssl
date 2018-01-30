@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 13:14:59 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/29 17:50:53 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/31 00:02:08 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ enum				e_program
 	DES_ECB,
 	DES_CBC,
 	DES3,
+	DES3_ECB,
+	DES3_CBC,
 	NUMBER_OF_PROGRAMS
 };
 

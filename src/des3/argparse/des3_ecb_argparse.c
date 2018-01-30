@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   des3_argparse.c                                    :+:      :+:    :+:   */
+/*   des3_ecb_argparse.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/29 16:55:24 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/31 00:07:54 by vrybalko         ###   ########.fr       */
+/*   Created: 2018/01/31 00:08:40 by vrybalko          #+#    #+#             */
+/*   Updated: 2018/01/31 00:09:40 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ static char		*g_flags[NUMBER_OF_FLAGS] = {
 	NULL,
 	"-k",
 	NULL,
-	"-iv"
 };
 
 static int		(*g_funcs[NUMBER_OF_FLAGS])(int,
@@ -42,10 +41,9 @@ static int		(*g_funcs[NUMBER_OF_FLAGS])(int,
 	NULL,
 	des3_argparse_set_keyarg,
 	NULL,
-	des3_cbc_argparse_set_iv,
 };
 
-void			des3_argparse(int ac, char **av, void **data_struct,
+void			des3_ecb_argparse(int ac, char **av, void **data_struct,
 					t_args *args)
 {
 	t_des3_config		*data;
@@ -60,7 +58,7 @@ void			des3_argparse(int ac, char **av, void **data_struct,
 	data->out_fd = 1;
 	data->b64_mode = NOBASE64;
 	data->key_mode = KEY_STDIN;
-	data->chiper_mode = CBC;
+	data->chiper_mode = ECB;
 	ft_bzero((void*)&(data->key[0]), 24);
 	*data_struct = (void*)data;
 	args->flags_num = NUMBER_OF_FLAGS;

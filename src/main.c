@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 12:35:49 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/30 23:43:00 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/31 00:32:41 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,37 @@
 ** TODO:
 ** [x] sleep
 ** [x] des-cbc read iv from input
-** [ ] des3 display iv in getpass
-** [ ] des3-ecb mode
-** [ ] progams list
+** [-] des3 display iv in getpass
+** [+] des3-ecb mode
+** [+] progams list
 ** [ ] invalid argument message
 ** [ ] help message for each program
 */
 
 static char			*g_a[NUMBER_OF_PROGRAMS + 1] = {"base64",
-	"des", "des-ecb", "des-cbc", "des3", NULL};
+	"des", "des-ecb", "des-cbc", "des3", "des3-ecb", "des3-cbc", NULL};
 static void			(*g_f[NUMBER_OF_PROGRAMS])(int, char **, void **,
 						t_args *args) = {base64_argparse,
-	des_argparse, des_argparse, des_cbc_argparse, des3_argparse};
+	des_argparse, des_argparse, des_cbc_argparse, des3_argparse,
+	des3_ecb_argparse, des3_argparse};
 static void			(*g_r[NUMBER_OF_PROGRAMS])(void *) = {base64_run,
-	des_run, des_run, des_run, des3_run};
+	des_run, des_run, des_run, des3_run, des3_run, des3_run};
+static char			*g_help[] = {"usage ./ft_ssl <program_name> [program_args]",
+	"ft_ssl help:",
+	"",
+	"Standard commands:",
+	"",
+	"Mesage Digest commands:",
+	"",
+	"Chiper commands:",
+	"base64",
+	"des",
+	"des-ecb",
+	"des-cbc",
+	"des3",
+	"des3-ecb",
+	"des3-cbc",
+	NULL};
 
 void				argparse(int ac, char **av, t_args *args_struct)
 {
@@ -38,7 +55,9 @@ void				argparse(int ac, char **av, t_args *args_struct)
 
 	if (ac < 2)
 	{
-		ft_putendl_fd("usage ./ft_ssl <program_name> [program_args]", 2);
+		i = -1;
+		while (g_help[++i])
+			ft_putendl_fd(g_help[i], 2);
 		exit(1);
 	}
 	i = -1;
@@ -53,7 +72,9 @@ void				argparse(int ac, char **av, t_args *args_struct)
 	}
 	if (args_struct->parse_func == NULL || args_struct->run_func == NULL)
 	{
-		ft_putendl_fd("usage ./ft_ssl <program_name> [program_args]", 2);
+		i = -1;
+		while (g_help[++i])
+			ft_putendl_fd(g_help[i], 2);
 		exit(1);
 	}
 }

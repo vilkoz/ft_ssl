@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 17:51:48 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/30 00:55:04 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/31 00:14:12 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include "des.h"
 
 void					des3_argparse(int ac, char **av, void **data_struct,
+							struct s_args *args);
+void					des3_ecb_argparse(int ac, char **av, void **data_struct,
 							struct s_args *args);
 
 void					des3_run(void *arg);

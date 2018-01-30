@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 17:14:54 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/30 23:39:09 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/31 00:12:43 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,9 @@ void			des3_run(void *arg)
 	size_t			sum_len;
 
 	data = (t_des3_config*)arg;
-	if (data->iv_status == 0)
-		set_pass(&(data->iv[0]), "enter iv in hex: ");
 	out = NULL;
+	if (data->chiper_mode == CBC && data->iv_status == 0)
+		set_pass(&(data->iv[0]), "enter iv in hex: ");
 	if (data->key_mode == KEY_STDIN)
 		set_pass(&(data->key[0]), "enter key in hex: ");
 	if ((in = reader(data->in_fd, &sum_len)) == NULL && data->mode == DECRYPT)
@@ -96,7 +96,7 @@ void			des3_run(void *arg)
 	}
 	(data->mode == ENCRYPT_FLAG) ? add_padd(&in, &sum_len) : 0;
 	out = (void*)des3_process_blocks(BYTE_ARRAY(in, sum_len), &(data->key[0]),
-		&(data->iv[0]), data->mode);
+		data->chiper_mode == CBC ? &(data->iv[0]) : NULL, data->mode);
 	des_output(data, (t_byte*)out, sum_len);
 	cleanup(data, (char*)out, in);
 }

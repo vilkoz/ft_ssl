@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 17:34:25 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/30 01:33:35 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/31 00:13:19 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,16 @@ static void		process_block(char *out, const t_byte_array in,
 	ft_bzero((void*)&(tmp[0]), 8);
 	ft_bzero((void*)&(tmp2[0]), 8);
 	ft_memcpy((void*)&(tmp[0]), (void*)in.bytes, in.len);
-	cbc_xor_begin(context, &(tmp[0]), &(save_iv[0]), action);
+	if (context.iv)
+		cbc_xor_begin(context, &(tmp[0]), &(save_iv[0]), action);
 	des_process_block(&(tmp2[0]), &(tmp[0]),
 			context.keys + (action == ENCRYPT ? 0 : 34), action);
 	des_process_block(&(tmp[0]), &(tmp2[0]), context.keys + 17,
 			action == ENCRYPT ? DECRYPT : ENCRYPT);
 	des_process_block((t_byte*)out, &(tmp[0]),
 			context.keys + (action == ENCRYPT ? 34 : 0), action);
-	cbc_xor_end(out, context, &(save_iv[0]), action);
+	if (context.iv)
+		cbc_xor_end(out, context, &(save_iv[0]), action);
 }
 
 char			*des3_process_blocks(t_byte_array in, t_byte *key,

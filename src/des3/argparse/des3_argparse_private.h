@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 16:55:42 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/29 21:15:56 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/31 00:08:18 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@
 # endif
 
 # include <stdio.h>
-# include <fcntl.h>
-
+# include <fcntl.h> 
 # define MIN(a, b) ((a) < (b) ? (a) : (b))
 
 enum				e_args_flags
@@ -35,6 +34,8 @@ enum				e_args_flags
 	KEY_ARG,
 	KEY_STDIN,
 	IV,
+	CBC,
+	ECB,
 	NUMBER_OF_FLAGS
 };
 
@@ -50,6 +51,7 @@ typedef struct		s_des3_config
 	unsigned char	key[24];
 	int				iv_status;
 	unsigned char	iv[8];
+	int				chiper_mode;
 }					t_des3_config;
 
 /*
