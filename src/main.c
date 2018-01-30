@@ -6,12 +6,23 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 12:35:49 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/29 21:07:34 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/30 02:01:23 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "argparse.h"
+
+/*
+** TODO:
+** [x] sleep
+** [ ] des-cbc read iv from input
+** [ ] des3 display iv in getpass
+** [ ] des3-ecb mode
+** [ ] progams list
+** [ ] invalid argument message
+** [ ] help message for each program
+*/
 
 static char			*g_a[NUMBER_OF_PROGRAMS + 1] = {"base64",
 	"des", "des-ecb", "des-cbc", "des3", NULL};
