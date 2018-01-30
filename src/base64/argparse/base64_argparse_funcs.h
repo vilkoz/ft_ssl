@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 16:11:36 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/25 00:27:52 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/31 00:44:24 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 struct s_base64_config;
 
 int		base64_argparse_set_decode(int ac, char **av,
-			void *data, int j);
+			void *data, int *j);
 int		base64_argparse_set_encode(int ac, char **av,
-			void *data, int j);
+			void *data, int *j);
 int		base64_argparse_set_filein(int ac, char **av,
-			void *data, int j);
+			void *data, int *j);
 int		base64_argparse_set_fileout(int ac, char **av,
-			void *data, int j);
+			void *data, int *j);
 
 #endif

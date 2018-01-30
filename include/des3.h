@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 17:51:48 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/31 00:14:12 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/31 01:38:25 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,9 @@ void					des3_run(void *arg);
 
 char					*des3_process_blocks(t_byte_array in, t_byte *key,
 							t_byte *iv, t_des_action action);
+
+void					des3_help(void);
+
+void					des3_ecb_help(void);
 
 #endif

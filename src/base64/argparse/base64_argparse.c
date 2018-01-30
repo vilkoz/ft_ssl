@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 13:06:43 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/25 00:55:49 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/31 01:20:23 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static char		*g_flags[NUMBER_OF_FLAGS] = {
 };
 
 static int		(*g_funcs[NUMBER_OF_FLAGS])(int,
-					char **, void *, int) = {
+					char **, void *, int*) = {
 	base64_argparse_set_decode,
 	base64_argparse_set_encode,
 	NULL,
@@ -32,6 +32,27 @@ static int		(*g_funcs[NUMBER_OF_FLAGS])(int,
 	NULL,
 	base64_argparse_set_fileout
 };
+
+static char		*g_help_msg[] = {
+	"base64 help:",
+	"",
+	"usage: ./ft_ssl base64 [-e | -d] [-i <in_file> | -o <out_file>]",
+	"",
+	"-e - set encode mode",
+	"-d - set decode mode",
+	"-i - read from file in next argument",
+	"-o - write to file in next argument",
+	NULL
+};
+
+void			base64_help(void)
+{
+	int		i;
+
+	i = -1;
+	while (g_help_msg[++i])
+		ft_putendl(g_help_msg[i]);
+}
 
 void			base64_argparse(int ac, char **av, void **data_struct,
 					t_args *args)

@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 21:03:04 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/29 21:03:06 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/31 01:42:13 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ typedef struct		s_args
 	void			(*run_func)(void *data_struct);
 	void			*data_struct;
 	int				flags_num;
-	int				(**funcs)(int, char **, void *, int);
+	int				(**funcs)(int, char **, void *, int *);
 	char			**flags;
-
+	int				program;
 }					t_args;
 
 #endif

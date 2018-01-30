@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 01:25:29 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/29 18:01:30 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/31 01:37:08 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static char		*g_flags[NUMBER_OF_FLAGS] = {
 };
 
 static int		(*g_funcs[NUMBER_OF_FLAGS])(int,
-					char **, void *, int) = {
+					char **, void *, int *) = {
 	des_argparse_set_decode,
 	NULL,
 	NULL,
@@ -45,6 +45,30 @@ static int		(*g_funcs[NUMBER_OF_FLAGS])(int,
 	des_cbc_argparse_set_iv,
 	NULL
 };
+
+static char		*g_help_msg[] = {
+	"des-cbc help:",
+	"",
+	"usage: ./ft_ssl des-cbc [-e|-d] [-i file|-o file] [-a] [-k key] [-v iv]",
+	"",
+	"-e - encrypt mode",
+	"-d - decrypt mode",
+	"-i - read from file in next argument",
+	"-o - write to file in next argument",
+	"-a - encode output (if -e) or decode input (if -d) in/from base64",
+	"-k - set key in hex (8 bytes or 16 hex chars)",
+	"-v - set initial vector in hex (8 bytes or 16 hex chars)",
+	NULL
+};
+
+void			des_cbc_help(void)
+{
+	int		i;
+
+	i = -1;
+	while (g_help_msg[++i])
+		ft_putendl(g_help_msg[i]);
+}
 
 void			des_cbc_argparse(int ac, char **av, void **data_struct,
 					t_args *args)

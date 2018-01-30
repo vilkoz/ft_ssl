@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 19:33:08 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/29 00:19:14 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/31 01:34:02 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,9 @@ void					gen_keys(const t_init_key init_key, t_key *keys,
 
 char					*des_process_blocks(t_byte_array in, t_byte *key,
 							t_byte *iv, t_des_action action);
+
+void					des_help(void);
+
+void					des_cbc_help(void);
 
 #endif

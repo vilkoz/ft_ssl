@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 23:11:51 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/29 20:55:22 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/31 01:20:41 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,7 @@ void			base64_argparse(int ac, char **av, void **data_struct,
 						struct s_args *args);
 
 void			base64_run(void *data_struct);
+
+void			base64_help(void);
 
 #endif

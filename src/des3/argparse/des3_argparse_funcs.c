@@ -6,24 +6,24 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 17:00:36 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/30 01:19:52 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/31 00:53:09 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "des3_argparse_private.h"
 #include "libft.h"
 
-int	des3_cbc_argparse_set_iv(int ac, char **av, void *data, int j)
+int	des3_cbc_argparse_set_iv(int ac, char **av, void *data, int *j)
 {
 	int		ret;
 
-	if (j + 1 >= ac)
+	if (*j + 1 >= ac)
 	{
 		ft_putendl_fd("ft_ssl: des: no key after -iv", 2);
 		return (-1);
 	}
 	if ((ret = convert_hex_key(&(((t_des3_config*)data)->iv[0]),
-					&(av[j + 1][0]))) < 0)
+					&(av[*j + 1][0]))) < 0)
 	{
 		ft_putstr_fd("ft_ssl: des: wrong hex char in iv: ", 2);
 		ft_putchar_fd((char)-ret, 2);
@@ -31,22 +31,21 @@ int	des3_cbc_argparse_set_iv(int ac, char **av, void *data, int j)
 		return (-1);
 	}
 	((t_des3_config*)data)->iv_status = 1;
+	(*j)++;
 	return (0);
 }
 
-int	des3_argparse_set_keyarg(int ac, char **av, void *data, int j)
+int	des3_argparse_set_keyarg(int ac, char **av, void *data, int *j)
 {
 	int		ret;
 	int		i;
 	char	tmp[48];
 
-	if (j + 1 >= ac)
-	{
-		ft_putendl_fd("ft_ssl: des: no key after -k", 2);
+	(*j + 1 >= ac) ? ft_putendl_fd("ft_ssl: des: no key after -k", 2) : 0;
+	if (*j + 1 >= ac)
 		return (-1);
-	}
 	ft_memset((void*)&(tmp[0]), '0', 48);
-	ft_memcpy((void*)&(tmp[0]), av[j + 1], MIN(ft_strlen(av[j + 1]), 48));
+	ft_memcpy((void*)&(tmp[0]), av[*j + 1], MIN(ft_strlen(av[*j + 1]), 48));
 	i = -1;
 	while (++i < 3)
 	{
@@ -60,5 +59,6 @@ int	des3_argparse_set_keyarg(int ac, char **av, void *data, int j)
 		}
 	}
 	((t_des3_config*)data)->key_mode = KEY_ARG;
+	(*j)++;
 	return (0);
 }
