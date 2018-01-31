@@ -43,6 +43,7 @@ int	des3_argparse_set_fileout(int ac, char **av, void *data, int *j)
 		perror("ft_ssl: des3");
 		return (-1);
 	}
+	(*j)++;
 	return (0);
 }
 

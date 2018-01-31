@@ -10,9 +10,9 @@ for _ in range(100):
     length = randint(0, 128)
     s = ''.join([pattern[randint(0, len(pattern) - 1)] for __ in range(length)])
     try:
-        encoded_text = co("echo -n \"" + s + "\" | ../../ft_ssl des-cbc -e -k 1122334455667788 -iv 1020304050607080 -a", shell=True);
+        encoded_text = co("echo -n \"" + s + "\" | ../../ft_ssl des-cbc -e -k 1122334455667788 -v 1020304050607080 -a", shell=True);
         ssl_encoded = co("echo -n \"" + s + "\"| openssl des-cbc -e -K 1122334455667788 -iv 1020304050607080 -a", shell=True);
-        decoded_text = co("echo -n \"" + ssl_encoded.decode() + "\"| ../../ft_ssl des-cbc -d -k 1122334455667788 -iv 1020304050607080 -a", shell=True);
+        decoded_text = co("echo -n \"" + ssl_encoded.decode() + "\"| ../../ft_ssl des-cbc -d -k 1122334455667788 -v 1020304050607080 -a", shell=True);
         ssl_decoded = co("echo -n \"" + ssl_encoded.decode() + "\"| openssl des-cbc -d -K 1122334455667788 -iv 1020304050607080 -a", shell=True);
     except CalledProcessError as e:
         print(e)

@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 16:55:24 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/31 17:21:43 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/31 18:02:30 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static char		*g_flags[NUMBER_OF_FLAGS] = {
 	NULL,
 	"-k",
 	NULL,
-	"-iv"
+	"-v"
 };
 
 static int		(*g_funcs[NUMBER_OF_FLAGS])(int,
