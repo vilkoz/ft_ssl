@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 01:25:29 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/31 01:37:08 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/31 17:13:35 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static char		*g_flags[NUMBER_OF_FLAGS] = {
 static int		(*g_funcs[NUMBER_OF_FLAGS])(int,
 					char **, void *, int *) = {
 	des_argparse_set_decode,
-	NULL,
+	accept_arg,
 	NULL,
 	des_argparse_set_filein,
 	NULL,

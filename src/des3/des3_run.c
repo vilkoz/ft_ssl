@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 17:14:54 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/31 00:12:43 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/31 17:44:06 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,19 @@
 #include "reader.h"
 #include "base64.h"
 
-static void		set_pass(t_byte *key, const char *prompt)
+static void		set_pass(t_byte *key, const char *prompt, int bytes)
 {
-	char		tmp[48];
+	char		tmp[47];
 	char		*pass;
 	int			ret;
 	int			i;
 
 	ft_memset((void*)&(tmp[0]), '0', 48);
+	tmp[48] = 0;
 	pass = getpass(prompt);
 	ft_memcpy((void*)&(tmp[0]), (void*)pass, MIN(ft_strlen(pass), 48));
 	i = -1;
-	while (++i < 3)
+	while (++i < bytes)
 	{
 		if ((ret = convert_hex_key(&(key[i * 8]), &(tmp[i * 16]))) < 0)
 		{
@@ -83,9 +84,9 @@ void			des3_run(void *arg)
 	data = (t_des3_config*)arg;
 	out = NULL;
 	if (data->chiper_mode == CBC && data->iv_status == 0)
-		set_pass(&(data->iv[0]), "enter iv in hex: ");
+		set_pass(&(data->iv[0]), "enter iv in hex: ", 1);
 	if (data->key_mode == KEY_STDIN)
-		set_pass(&(data->key[0]), "enter key in hex: ");
+		set_pass(&(data->key[0]), "enter key in hex: ", 3);
 	if ((in = reader(data->in_fd, &sum_len)) == NULL && data->mode == DECRYPT)
 		return (cleanup(data, (char*)out, in));
 	if (data->b64_mode == BASE64 && data->mode == DECRYPT_FLAG)

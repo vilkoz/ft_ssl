@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 12:35:49 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/31 01:44:53 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/31 17:14:39 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,15 @@ static char			*g_help[] = {"usage ./ft_ssl <program_name> [program_args]",
 	"des3-ecb",
 	"des3-cbc",
 	NULL};
+
+int					accept_arg(int a, char **b, void *c, int *d)
+{
+	(void)a;
+	(void)b;
+	(void)c;
+	(void)d;
+	return (0);
+}
 
 void				argparse(int ac, char **av, t_args *args_struct)
 {

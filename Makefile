@@ -6,7 +6,7 @@
 #    By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/18 13:19:24 by vrybalko          #+#    #+#              #
-#    Updated: 2018/01/31 00:16:10 by vrybalko         ###   ########.fr        #
+#    Updated: 2018/01/31 17:22:12 by vrybalko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,26 +26,27 @@ LIBFT=$(LIBFT_DIR)/libft.a
 $(LIBFT):
 	make -C $(LIBFT_DIR) -j8
 
-SRCS = main.c									\
-	   reader.c									\
-	   base64/base64.c							\
-	   base64/base64_run.c						\
-	   base64/argparse/base64_argparse.c		\
-	   base64/argparse/base64_argparse_funcs.c	\
-	   des/des.c								\
-	   des/des_run.c							\
-	   des/des_operations.c						\
-	   des/des_key_generation.c					\
-	   des/des_initial_premutation.c			\
-	   des/argparse/des_argparse.c				\
-	   des/argparse/des_cbc_argparse.c			\
-	   des/argparse/des_argparse_funcs.c		\
-	   des/argparse/des_cbc_argparse_funcs.c	\
-	   des3/des3_run.c							\
-	   des3/des3_operations.c					\
-	   des3/argparse/des3_argparse.c			\
-	   des3/argparse/des3_ecb_argparse.c		\
-	   des3/argparse/des3_argparse_funcs.c		\
+SRCS = main.c											\
+	   reader.c											\
+	   base64/base64.c									\
+	   base64/base64_run.c								\
+	   base64/argparse/base64_argparse.c				\
+	   base64/argparse/base64_argparse_funcs.c			\
+	   des/des.c										\
+	   des/des_run.c									\
+	   des/des_operations.c								\
+	   des/des_key_generation.c							\
+	   des/des_initial_premutation.c					\
+	   des/argparse/des_argparse.c						\
+	   des/argparse/des_cbc_argparse.c					\
+	   des/argparse/des_argparse_funcs.c				\
+	   des/argparse/des_cbc_argparse_funcs.c			\
+	   des3/des3_run.c									\
+	   des3/des3_operations.c							\
+	   des3/argparse/des3_argparse.c					\
+	   des3/argparse/des3_ecb_argparse.c				\
+	   des3/argparse/des3_argparse_funcs.c				\
+	   des3/argparse/des3_argparse_general_funcs.c		\
 
 BIN_DIR = bin
 

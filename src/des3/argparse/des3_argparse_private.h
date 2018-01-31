@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 16:55:42 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/31 00:08:18 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/31 17:38:30 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct		s_des3_config
 	int				out_fd;
 	char			b64_mode;
 	char			key_mode;
-	unsigned char	key[24];
+	unsigned char	key[25];
 	int				iv_status;
 	unsigned char	iv[8];
 	int				chiper_mode;

@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 21:03:04 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/31 01:42:13 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/31 17:14:43 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,7 @@ typedef struct		s_args
 	char			**flags;
 	int				program;
 }					t_args;
+
+int					accept_arg(int a, char **b, void *c, int *d);
 
 #endif

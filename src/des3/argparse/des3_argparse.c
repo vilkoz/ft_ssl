@@ -6,11 +6,10 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 16:55:24 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/31 01:37:04 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/31 17:21:43 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../des/argparse/des_argparse_funcs.h"
 #include "des3_argparse_funcs.h"
 #include "des3_argparse_private.h"
 #include "libft.h"
@@ -32,13 +31,13 @@ static char		*g_flags[NUMBER_OF_FLAGS] = {
 
 static int		(*g_funcs[NUMBER_OF_FLAGS])(int,
 					char **, void *, int *) = {
+	accept_arg,
+	des3_argparse_set_decode,
 	NULL,
-	des_argparse_set_decode,
+	des3_argparse_set_filein,
 	NULL,
-	des_argparse_set_filein,
-	NULL,
-	des_argparse_set_fileout,
-	des_argparse_set_b64,
+	des3_argparse_set_fileout,
+	des3_argparse_set_b64,
 	NULL,
 	des3_argparse_set_keyarg,
 	NULL,

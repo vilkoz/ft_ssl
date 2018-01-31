@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 17:00:36 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/31 00:53:09 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/31 17:32:16 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,13 @@ int	des3_argparse_set_keyarg(int ac, char **av, void *data, int *j)
 {
 	int		ret;
 	int		i;
-	char	tmp[48];
+	char	tmp[49];
 
 	(*j + 1 >= ac) ? ft_putendl_fd("ft_ssl: des: no key after -k", 2) : 0;
 	if (*j + 1 >= ac)
 		return (-1);
 	ft_memset((void*)&(tmp[0]), '0', 48);
+	tmp[48] = 0;
 	ft_memcpy((void*)&(tmp[0]), av[*j + 1], MIN(ft_strlen(av[*j + 1]), 48));
 	i = -1;
 	while (++i < 3)
