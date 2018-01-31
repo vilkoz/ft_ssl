@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 16:55:42 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/31 17:38:30 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/31 19:32:16 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # endif
 
 # include <stdio.h>
-# include <fcntl.h> 
+# include <fcntl.h>
 # define MIN(a, b) ((a) < (b) ? (a) : (b))
 
 enum				e_args_flags

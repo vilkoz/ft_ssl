@@ -6,7 +6,7 @@
 #    By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/18 13:19:24 by vrybalko          #+#    #+#              #
-#    Updated: 2018/01/31 17:22:12 by vrybalko         ###   ########.fr        #
+#    Updated: 2018/01/31 19:34:43 by vrybalko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRCS = main.c											\
 	   des/des_operations.c								\
 	   des/des_key_generation.c							\
 	   des/des_initial_premutation.c					\
+	   des/convert_hex_key.c							\
 	   des/argparse/des_argparse.c						\
 	   des/argparse/des_cbc_argparse.c					\
 	   des/argparse/des_argparse_funcs.c				\
