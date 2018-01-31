@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 17:14:54 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/31 17:44:06 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/01/31 19:36:53 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 static void		set_pass(t_byte *key, const char *prompt, int bytes)
 {
-	char		tmp[47];
+	char		tmp[49];
 	char		*pass;
 	int			ret;
 	int			i;
