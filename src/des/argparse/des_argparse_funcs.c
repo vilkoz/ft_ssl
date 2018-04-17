@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 00:13:36 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/31 00:46:05 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/04/17 21:36:04 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int	des_argparse_set_fileout(int ac, char **av, void *data, int *j)
 		perror("ft_ssl: des");
 		return (-1);
 	}
+	(*j)++;
 	return (0);
 }
 
