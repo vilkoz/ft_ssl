@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 21:35:00 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/29 21:05:08 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/04/17 22:25:21 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ static char		*des_ecb(t_byte_array in, t_byte *key, t_des_action action)
 		if (action == DECRYPT && (in.len % 8 != 0) && (size_t)(i + 8) >= in.len)
 		{
 			ft_putendl_fd("ft_ssl: des: bad_block!", 2);
+			exit(1);
 			break ;
 		}
 		process_block(out + i, BYTE_ARRAY((in.bytes + i),
