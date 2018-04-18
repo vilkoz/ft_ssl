@@ -6,7 +6,7 @@
 /*   By: vrybalko <vrybalko@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 19:34:06 by vrybalko          #+#    #+#             */
-/*   Updated: 2018/01/31 19:34:24 by vrybalko         ###   ########.fr       */
+/*   Updated: 2018/04/19 02:01:33 by vrybalko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int				convert_hex_key(unsigned char *dst, const char *src)
 	if (!dst || !src)
 		return (-1);
 	i = -1;
-	while (++i < 8)
+	while (src[++i] && i < 8)
 		if (!ft_isdigit(src[i]) && !(ft_tolower(src[i]) >= 'a'
 					&& ft_tolower(src[i]) <= 'f'))
 			return (-src[i]);
